@@ -1,0 +1,238 @@
+---
+---
+<section id="contacto" aria-labelledby="contacto-titulo">
+  <div class="contacto-layout">
+
+    <!-- INFO -->
+    <div class="contacto-info">
+      <span class="section-label">Hablemos</span>
+      <h2 class="section-title" id="contacto-titulo">
+        Contáctanos<br /><em>Hoy Mismo</em>
+      </h2>
+      <p class="section-desc">
+        Estamos en <strong>Montería, Córdoba</strong>. Sin oficina presencial, pero siempre disponibles
+        para atenderte donde estés. Respuesta rápida garantizada.
+      </p>
+
+      <!-- TARJETAS DE CONTACTO -->
+      <div class="contact-cards" itemscope itemtype="https://schema.org/LocalBusiness">
+        <a
+          href="https://wa.me/573016537553?text=Hola%2C%20vi%20su%20p%C3%A1gina%20y%20necesito%20informaci%C3%B3n"
+          class="ccard"
+          target="_blank" rel="noopener noreferrer"
+          aria-label="Contactar por WhatsApp"
+          itemprop="telephone" content="+573016537553"
+        >
+          <div class="cicon wa">💬</div>
+          <div>
+            <div class="clabel">WHATSAPP</div>
+            <div class="cval">+57 301 653 7553</div>
+          </div>
+          <span class="carrow">→</span>
+        </a>
+
+        <a href="tel:+573016537553" class="ccard" aria-label="Llamar por teléfono">
+          <div class="cicon tel">📞</div>
+          <div>
+            <div class="clabel">TELÉFONO</div>
+            <div class="cval">+57 301 653 7553</div>
+          </div>
+          <span class="carrow">→</span>
+        </a>
+
+        <a href="mailto:jdsoporte98@gmail.com" class="ccard" aria-label="Enviar correo electrónico">
+          <div class="cicon mail">✉️</div>
+          <div>
+            <div class="clabel">CORREO</div>
+            <div class="cval">jdsoporte98@gmail.com</div>
+          </div>
+          <span class="carrow">→</span>
+        </a>
+      </div>
+
+      <!-- REDES SOCIALES – PRÓXIMAMENTE -->
+      <!-- ════════════════════════════════════════════════════════
+           INSTRUCCIONES PARA ACTIVAR REDES SOCIALES:
+           1. Cambia href="#" de cada enlace por tu URL real
+              Ejemplo Facebook:  href="https://facebook.com/TuPagina"
+              Ejemplo Instagram: href="https://instagram.com/tu_usuario"
+              Ejemplo TikTok:    href="https://tiktok.com/@tu_usuario"
+           2. En cada <a> elimina estas líneas:
+                  style="opacity:.4;pointer-events:none;cursor:not-allowed"
+           3. Borra el párrafo "Próximamente activas"
+           ════════════════════════════════════════════════════════ -->
+      <div class="redes-box">
+        <p class="redes-pronto">🔜 <strong>Redes Sociales</strong> — Próximamente activas</p>
+        <div class="redes-btns">
+          <a href="#" class="red-btn" style="opacity:.4;pointer-events:none;cursor:not-allowed" aria-label="Facebook Soporte JD">
+            📘 Facebook
+          </a>
+          <a href="#" class="red-btn" style="opacity:.4;pointer-events:none;cursor:not-allowed" aria-label="Instagram Soporte JD">
+            📸 Instagram
+          </a>
+          <a href="#" class="red-btn" style="opacity:.4;pointer-events:none;cursor:not-allowed" aria-label="TikTok Soporte JD">
+            🎵 TikTok
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- FORMULARIO -->
+    <div class="form-box" role="form" aria-label="Formulario de contacto Soporte JD">
+      <h3 class="form-title">📩 Envíanos un Mensaje</h3>
+      <p class="form-subtitle">Completa el formulario y te contactamos por WhatsApp de inmediato.</p>
+
+      <div class="form-group">
+        <label for="nombre">NOMBRE COMPLETO</label>
+        <input type="text" id="nombre" placeholder="Tu nombre completo" autocomplete="name" />
+      </div>
+      <div class="form-group">
+        <label for="telefono">TELÉFONO / WHATSAPP</label>
+        <input type="tel" id="telefono" placeholder="Ej: 300 123 4567" autocomplete="tel" />
+      </div>
+      <div class="form-group">
+        <label for="correo">CORREO ELECTRÓNICO</label>
+        <input type="email" id="correo" placeholder="tu@correo.com" autocomplete="email" />
+      </div>
+      <div class="form-group">
+        <label for="servicio">SERVICIO DE INTERÉS</label>
+        <select id="servicio">
+          <option value="">Selecciona un servicio…</option>
+          <option value="Redes y Datos">Redes y Datos</option>
+          <option value="Cámaras CCTV">Cámaras CCTV</option>
+          <option value="Soporte y Reparación de Equipos">Soporte y Reparación de Equipos</option>
+          <option value="Menú Digital para Negocios">Menú Digital para Negocios</option>
+          <option value="Otro">Otro</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="mensaje">MENSAJE</label>
+        <textarea id="mensaje" placeholder="Cuéntanos qué necesitas…" rows="4"></textarea>
+      </div>
+
+      <button class="btn-enviar" id="btnEnviar" type="button" aria-label="Enviar mensaje por WhatsApp">
+        📲 Enviar por WhatsApp
+      </button>
+      <p class="form-note">Tu mensaje llegará directamente a nuestro WhatsApp. Sin spam.</p>
+    </div>
+
+  </div>
+</section>
+
+<style>
+section {
+  background: linear-gradient(135deg, #0d1b3e 0%, #0d1117 100%);
+  border-top: 1px solid rgba(35,85,180,.2);
+}
+h2 em { color: #f5a623; font-style: normal; }
+
+.contacto-layout {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 64px; align-items: start;
+}
+@media(max-width: 800px) { .contacto-layout { grid-template-columns: 1fr; gap: 48px; } }
+
+/* Tarjetas contacto */
+.contact-cards { display: flex; flex-direction: column; gap: 14px; margin-top: 36px; }
+.ccard {
+  display: flex; align-items: center; gap: 16px;
+  background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.08);
+  border-radius: 12px; padding: 18px 20px;
+  text-decoration: none; color: #fff;
+  transition: border-color .3s, transform .2s, box-shadow .3s;
+}
+.ccard:hover {
+  border-color: #f5a623; transform: translateX(6px);
+  box-shadow: 0 6px 24px rgba(245,166,35,.15);
+}
+.cicon {
+  width: 46px; height: 46px; min-width: 46px; border-radius: 10px;
+  display: flex; align-items: center; justify-content: center; font-size: 1.4rem;
+}
+.wa   { background: rgba(37,211,102,.15); }
+.tel  { background: rgba(58,123,213,.15); }
+.mail { background: rgba(245,166,35,.15); }
+.clabel { font-size: .72rem; color: rgba(255,255,255,.4); margin-bottom: 2px; letter-spacing: .05em; }
+.cval   { font-weight: 600; font-size: .97rem; }
+.carrow { margin-left: auto; color: rgba(255,255,255,.2); transition: color .2s; }
+.ccard:hover .carrow { color: #f5a623; }
+
+/* Redes */
+.redes-box {
+  background: rgba(255,255,255,.03); border: 1.5px dashed rgba(255,255,255,.12);
+  border-radius: 12px; padding: 20px; margin-top: 16px;
+}
+.redes-pronto {
+  font-size: .85rem; color: rgba(255,255,255,.4); text-align: center;
+  margin-bottom: 14px;
+}
+.redes-pronto strong { color: rgba(255,255,255,.6); }
+.redes-btns { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+.red-btn {
+  background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.1);
+  color: rgba(255,255,255,.5); border-radius: 8px; padding: 8px 16px;
+  font-size: .82rem; font-weight: 600; text-decoration: none;
+  transition: border-color .2s, color .2s;
+}
+.red-btn:hover { border-color: #f5a623; color: #f5a623; }
+
+/* Formulario */
+.form-box {
+  background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.08);
+  border-radius: 18px; padding: 36px;
+}
+.form-title {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 1.5rem; font-weight: 700; margin-bottom: 6px;
+}
+.form-subtitle { font-size: .88rem; color: rgba(255,255,255,.45); margin-bottom: 28px; }
+.form-group { margin-bottom: 18px; }
+.form-group label {
+  display: block; font-size: .75rem; font-weight: 700; letter-spacing: .06em;
+  color: rgba(255,255,255,.45); margin-bottom: 8px;
+}
+.form-group input,
+.form-group textarea,
+.form-group select {
+  width: 100%;
+  background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.12);
+  border-radius: 8px; color: #fff;
+  font-family: 'Barlow', sans-serif; font-size: .95rem;
+  padding: 12px 16px; outline: none; transition: border-color .2s;
+}
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus { border-color: #3a7bd5; }
+.form-group textarea { resize: vertical; min-height: 100px; }
+.form-group select option { background: #1a2a6c; }
+
+.btn-enviar {
+  width: 100%; background: #f5a623; color: #0d1117;
+  font-family: 'Barlow Condensed', sans-serif; font-weight: 700;
+  font-size: 1.1rem; letter-spacing: .06em;
+  padding: 15px; border: none; border-radius: 8px; cursor: pointer;
+  transition: background .2s, transform .15s;
+  box-shadow: 0 4px 20px rgba(245,166,35,.3);
+}
+.btn-enviar:hover { background: #e08800; transform: translateY(-2px); }
+.form-note {
+  font-size: .78rem; color: rgba(255,255,255,.3);
+  text-align: center; margin-top: 12px;
+}
+</style>
+
+<script>
+  document.getElementById('btnEnviar')?.addEventListener('click', () => {
+    const nombre   = (document.getElementById('nombre') as HTMLInputElement)?.value.trim() || 'Sin nombre';
+    const telefono = (document.getElementById('telefono') as HTMLInputElement)?.value.trim();
+    const servicio = (document.getElementById('servicio') as HTMLSelectElement)?.value || 'No especificado';
+    const mensaje  = (document.getElementById('mensaje') as HTMLTextAreaElement)?.value.trim();
+
+    let texto = `Hola, soy ${nombre}`;
+    if (telefono) texto += ` (Tel: ${telefono})`;
+    texto += `.\nServicio de interés: ${servicio}`;
+    if (mensaje) texto += `.\n${mensaje}`;
+
+    window.open(`https://wa.me/573016537553?text=${encodeURIComponent(texto)}`, '_blank');
+  });
+</script>

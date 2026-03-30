@@ -1,0 +1,158 @@
+---
+const features = [
+  { icon: "📋", titulo: "Toma de pedidos digital", desc: "Los clientes hacen su pedido desde el celular o tablet, sin esperar mesero. Ágil y sin errores." },
+  { icon: "📦", titulo: "Control de inventario", desc: "Registra entradas y salidas de productos en tiempo real. Sabe exactamente qué tienes en stock." },
+  { icon: "📊", titulo: "Registro de ventas", desc: "Historial completo de pedidos, ventas del día y reportes para tomar mejores decisiones." },
+  { icon: "⚡", titulo: "Fácil de usar", desc: "No necesitas conocimientos técnicos. Te capacitamos y te acompañamos con soporte continuo." },
+];
+---
+
+<section id="menu-digital" aria-labelledby="menu-titulo">
+  <div class="menu-layout">
+
+    <!-- TEXTO -->
+    <div class="menu-texto">
+      <span class="section-label">Innovación para tu negocio</span>
+      <h2 class="section-title" id="menu-titulo">
+        Menú Digital<br /><em>Inteligente</em>
+      </h2>
+      <p class="section-desc">
+        Ideal para restaurantes, cafeterías, tiendas y cualquier negocio pequeño o mediano en
+        Montería que quiera modernizarse, ahorrar tiempo y vender más.
+      </p>
+
+      <ul class="feat-list" role="list">
+        {features.map(f => (
+          <li class="feat-item">
+            <div class="feat-icon" aria-hidden="true">{f.icon}</div>
+            <div>
+              <strong>{f.titulo}</strong>
+              <span>{f.desc}</span>
+            </div>
+          </li>
+        ))}
+      </ul>
+
+      <a
+        href="#contacto"
+        class="btn-primary"
+        style="margin-top: 36px; width: fit-content;"
+        aria-label="Solicitar menú digital"
+      >
+        🍽️ Quiero mi Menú Digital
+      </a>
+    </div>
+
+    <!-- MOCKUP -->
+    <div class="mockup" aria-label="Vista previa del menú digital" role="img">
+      <div class="mockup-header">
+        <div class="dot r"></div><div class="dot y"></div><div class="dot g"></div>
+        <span class="mockup-url">menudigital.soporte-jd.com</span>
+      </div>
+      <div class="mockup-title">🍽️ Restaurante El Sabor Costeño</div>
+      <div class="mockup-subtitle">Montería, Córdoba</div>
+
+      <div class="mockup-items">
+        <div class="mi"><span>🍗 Bandeja Paisa</span><span class="price">$28.000</span></div>
+        <div class="mi"><span>🐟 Mojarra Frita</span><span class="price">$32.000</span></div>
+        <div class="mi"><span>🥤 Limonada Natural</span><span class="price">$6.000</span></div>
+        <div class="mi"><span>☕ Café Tinto</span><span class="price">$2.000</span></div>
+        <div class="mi"><span>🍰 Postre del Día</span><span class="price">$8.000</span></div>
+      </div>
+
+      <div class="mockup-pedido">
+        <div class="pedido-badge">✅ Pedido #047 confirmado · Mesa 3</div>
+        <div class="pedido-total">Total: <strong>$46.000</strong></div>
+      </div>
+
+      <div class="mockup-stats">
+        <div class="stat"><span class="snum">23</span><span class="slabel">Pedidos hoy</span></div>
+        <div class="stat"><span class="snum">$890K</span><span class="slabel">Ventas del día</span></div>
+        <div class="stat"><span class="snum">12</span><span class="slabel">Items en stock</span></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<style>
+section {
+  background: linear-gradient(135deg, #0d1b3e 0%, #0d1117 100%);
+  border-top: 1px solid rgba(35,85,180,.2);
+  border-bottom: 1px solid rgba(35,85,180,.2);
+}
+h2 em { color: #f5a623; font-style: normal; }
+
+.menu-layout {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 64px; align-items: center;
+}
+@media(max-width: 800px) {
+  .menu-layout { grid-template-columns: 1fr; gap: 48px; }
+}
+
+/* Features */
+.feat-list { list-style: none; margin-top: 32px; display: flex; flex-direction: column; gap: 20px; }
+.feat-item { display: flex; align-items: flex-start; gap: 14px; }
+.feat-icon {
+  width: 40px; height: 40px; min-width: 40px; border-radius: 10px;
+  background: rgba(245,166,35,.15); color: #f5a623;
+  display: flex; align-items: center; justify-content: center; font-size: 1.1rem;
+}
+.feat-item strong { display: block; color: #fff; font-weight: 600; margin-bottom: 2px; font-size: .97rem; }
+.feat-item span   { font-size: .88rem; color: rgba(255,255,255,.55); line-height: 1.55; }
+
+/* Mockup */
+.mockup {
+  background: rgba(255,255,255,.04);
+  border: 1px solid rgba(255,255,255,.1);
+  border-radius: 20px; padding: 28px;
+  box-shadow: 0 24px 60px rgba(0,0,0,.4);
+}
+.mockup-header {
+  display: flex; align-items: center; gap: 6px; margin-bottom: 20px;
+}
+.dot { width: 10px; height: 10px; border-radius: 50%; }
+.dot.r { background: #ff5f57; }
+.dot.y { background: #febc2e; }
+.dot.g { background: #28c840; }
+.mockup-url {
+  margin-left: 8px; font-size: .72rem;
+  color: rgba(255,255,255,.3); font-family: monospace;
+}
+.mockup-title {
+  font-family: 'Barlow Condensed', sans-serif; font-size: 1.15rem;
+  font-weight: 700; color: #f5a623; text-align: center; margin-bottom: 2px;
+}
+.mockup-subtitle { text-align: center; font-size: .78rem; color: rgba(255,255,255,.35); margin-bottom: 18px; }
+
+.mockup-items { display: flex; flex-direction: column; gap: 0; }
+.mi {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,.06);
+  font-size: .9rem; color: rgba(255,255,255,.8);
+}
+.mi:last-child { border-bottom: none; }
+.price { color: #f5a623; font-weight: 700; font-size: .95rem; }
+
+.mockup-pedido {
+  background: rgba(35,85,180,.15); border: 1px solid rgba(35,85,180,.3);
+  border-radius: 10px; padding: 12px 16px; margin-top: 16px;
+  display: flex; justify-content: space-between; align-items: center;
+}
+.pedido-badge { font-size: .82rem; color: rgba(255,255,255,.7); }
+.pedido-total { font-size: .9rem; color: #fff; }
+.pedido-total strong { color: #f5a623; }
+
+.mockup-stats {
+  display: flex; justify-content: space-between;
+  margin-top: 16px; padding-top: 16px;
+  border-top: 1px solid rgba(255,255,255,.06);
+}
+.stat { text-align: center; }
+.snum {
+  display: block; font-family: 'Barlow Condensed', sans-serif;
+  font-size: 1.4rem; font-weight: 800; color: #3a7bd5;
+}
+.slabel { font-size: .72rem; color: rgba(255,255,255,.35); }
+</style>

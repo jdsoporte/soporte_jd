@@ -1,0 +1,84 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import Hero from '../components/Hero.astro';
+import Servicios from '../components/Servicios.astro';
+import MenuDigital from '../components/MenuDigital.astro';
+import Proceso from '../components/Proceso.astro';
+import Contacto from '../components/Contacto.astro';
+import Footer from '../components/Footer.astro';
+import '../styles/global.css';
+---
+
+<Layout
+  title="Soporte JD | Redes, CCTV, Soporte Técnico y Menú Digital en Montería, Córdoba"
+  description="Soporte JD en Montería, Córdoba. Instalación de redes y datos, cámaras CCTV, reparación de computadores y menús digitales para negocios. Atención a domicilio. ¡Llámanos ya!"
+>
+  <Navbar />
+  <main id="main-content">
+    <Hero />
+
+    <!-- STATS BAR -->
+    <div class="stats-bar" aria-label="Datos de Soporte JD">
+      <div class="stat-item">
+        <div class="stat-num">24/7</div>
+        <div class="stat-label">SOPORTE DISPONIBLE</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">4</div>
+        <div class="stat-label">SERVICIOS ESPECIALIZADOS</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">100%</div>
+        <div class="stat-label">ATENCIÓN PERSONALIZADA</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">∞</div>
+        <div class="stat-label">COMPROMISO CON TU NEGOCIO</div>
+      </div>
+    </div>
+
+    <Servicios />
+    <MenuDigital />
+    <Proceso />
+    <Contacto />
+  </main>
+  <Footer />
+
+  <!-- BOTÓN FLOTANTE WHATSAPP -->
+  <a
+    href="https://wa.me/573016537553?text=Hola%2C%20vi%20su%20p%C3%A1gina%20y%20necesito%20informaci%C3%B3n"
+    class="wa-float"
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label="Contactar por WhatsApp"
+    title="Chatea con Soporte JD"
+  >
+    💬
+  </a>
+</Layout>
+
+<style>
+.stats-bar {
+  background: rgba(255,255,255,.03);
+  border-top: 1px solid rgba(255,255,255,.06);
+  border-bottom: 1px solid rgba(255,255,255,.06);
+  display: flex; flex-wrap: wrap; padding: 28px 6%;
+}
+.stat-item {
+  flex: 1; min-width: 150px; text-align: center; padding: 12px 0;
+  border-right: 1px solid rgba(255,255,255,.06);
+}
+.stat-item:last-child { border-right: none; }
+.stat-num {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 2.4rem; font-weight: 900; color: #f5a623; line-height: 1;
+}
+.stat-label { font-size: .75rem; color: rgba(255,255,255,.4); margin-top: 4px; letter-spacing: .06em; }
+
+@media(max-width: 560px) {
+  .stats-bar { flex-direction: column; }
+  .stat-item { border-right: none; border-bottom: 1px solid rgba(255,255,255,.06); }
+  .stat-item:last-child { border-bottom: none; }
+}
+</style>

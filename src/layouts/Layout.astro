@@ -1,0 +1,114 @@
+---
+export interface Props {
+  title?: string;
+  description?: string;
+  canonical?: string;
+  image?: string;
+}
+
+const {
+  title = "Soporte JD | Redes, CCTV, Soporte Técnico y Menú Digital – Montería, Córdoba",
+  description = "Soporte JD en Montería, Córdoba. Instalación de redes y datos, cámaras CCTV, reparación de computadores y menús digitales para negocios. Atención a domicilio. ¡Llámanos ya!",
+  canonical = Astro.url.href,
+  image = "/og-image.jpg",
+} = Astro.props;
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "Soporte JD",
+  "description": description,
+  "url": "https://www.soporte-jd.com",
+  "telephone": "+573016537553",
+  "email": "jdsoporte98@gmail.com",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Montería",
+    "addressRegion": "Córdoba",
+    "addressCountry": "CO"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": "8.7479",
+    "longitude": "-75.8814"
+  },
+  "areaServed": [
+    { "@type": "City", "name": "Montería" },
+    { "@type": "AdministrativeArea", "name": "Córdoba" }
+  ],
+  "serviceType": [
+    "Instalación de redes y datos",
+    "Cámaras CCTV",
+    "Soporte técnico",
+    "Reparación de computadores",
+    "Menú digital para negocios"
+  ],
+  "openingHoursSpecification": {
+    "@type": "OpeningHoursSpecification",
+    "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
+    "opens": "07:00",
+    "closes": "21:00"
+  },
+  "priceRange": "$$",
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "telephone": "+573016537553",
+    "contactType": "customer service",
+    "availableLanguage": "Spanish"
+  }
+};
+---
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+  <!-- SEO PRIMARIO -->
+  <title>{title}</title>
+  <meta name="description" content={description} />
+  <meta name="keywords" content="soporte técnico Montería, cámaras CCTV Montería, redes y datos Córdoba, menú digital restaurantes Montería, reparación computadores Montería, instalación wifi Montería, videovigilancia Córdoba, soporte informático Montería, Soporte JD" />
+  <meta name="author" content="Soporte JD" />
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+  <link rel="canonical" href={canonical} />
+
+  <!-- GEO SEO LOCAL -->
+  <meta name="geo.region" content="CO-COR" />
+  <meta name="geo.placename" content="Montería, Córdoba, Colombia" />
+  <meta name="geo.position" content="8.7479;-75.8814" />
+  <meta name="ICBM" content="8.7479, -75.8814" />
+
+  <!-- OPEN GRAPH (Facebook / WhatsApp) -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content={canonical} />
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:image" content={image} />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:locale" content="es_CO" />
+  <meta property="og:site_name" content="Soporte JD" />
+
+  <!-- TWITTER CARD -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={title} />
+  <meta name="twitter:description" content={description} />
+  <meta name="twitter:image" content={image} />
+
+  <!-- SCHEMA.ORG JSON-LD (SEO LOCAL) -->
+  <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+
+  <!-- FUENTES -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <!-- FAVICON -->
+  <link rel="icon" type="image/jpeg" href="/logo.jpg" />
+  <link rel="apple-touch-icon" href="/logo.jpg" />
+</head>
+<body>
+  <slot />
+</body>
+</html>

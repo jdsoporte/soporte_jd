@@ -1,0 +1,147 @@
+---
+---
+<section id="inicio" aria-label="Inicio Soporte JD Montería">
+  <div class="hero-bg-grid" aria-hidden="true"></div>
+  <div class="hero-glow" aria-hidden="true"></div>
+
+  <div class="hero-content">
+    <div class="hero-badge" aria-label="Ubicación">
+      <span class="badge-dot" aria-hidden="true">●</span>
+      Montería, Córdoba · Servicio a domicilio
+    </div>
+
+    <h1 class="hero-title">
+      <span class="line-blue">PROTEGE</span><br />
+      TU ESPACIO,<br />
+      <span class="accent">CONECTA</span><br />
+      TU FUTURO
+    </h1>
+
+    <p class="hero-sub">
+      Redes y datos, cámaras CCTV, soporte técnico y menús digitales para tu negocio.
+      Atención personalizada <strong>donde tú estés</strong> en Montería y toda la región.
+    </p>
+
+    <div class="hero-btns">
+      <a
+        href="https://wa.me/573016537553?text=Hola%2C%20quiero%20una%20cotizaci%C3%B3n"
+        class="btn-primary"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Cotizar por WhatsApp"
+      >
+        📲 Cotizar por WhatsApp
+      </a>
+      <a href="#servicios" class="btn-secondary" aria-label="Ver nuestros servicios">
+        Ver Servicios ↓
+      </a>
+    </div>
+
+    <div class="hero-trust">
+      <div class="trust-item"><span>✅</span> Sin oficina, con resultados</div>
+      <div class="trust-item"><span>⚡</span> Respuesta rápida</div>
+      <div class="trust-item"><span>🔒</span> Trabajo garantizado</div>
+    </div>
+  </div>
+
+  <div class="hero-visual" aria-hidden="true">
+    <img
+      src="/logo.jpg"
+      alt="Soporte JD - Redes, CCTV y soporte técnico en Montería"
+      width="440"
+      height="440"
+      loading="eager"
+      fetchpriority="high"
+    />
+  </div>
+</section>
+
+<style>
+section {
+  min-height: 100vh;
+  display: flex; align-items: center;
+  padding: 120px 6% 80px;
+  position: relative; overflow: hidden;
+  background: linear-gradient(135deg, #0d1117 0%, #0d1b3e 60%, #0d1117 100%);
+}
+
+.hero-bg-grid {
+  position: absolute; inset: 0; pointer-events: none;
+  background-image:
+    linear-gradient(rgba(35,85,180,.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(35,85,180,.07) 1px, transparent 1px);
+  background-size: 48px 48px;
+  animation: gridMove 20s linear infinite;
+}
+.hero-glow {
+  position: absolute; top: -20%; right: -10%;
+  width: 600px; height: 600px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(35,85,180,.35) 0%, transparent 70%);
+  pointer-events: none;
+  animation: pulse 6s ease-in-out infinite alternate;
+}
+
+.hero-content {
+  position: relative; z-index: 2; max-width: 600px;
+  display: flex; flex-direction: column; gap: 0;
+}
+
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: rgba(245,166,35,.12); border: 1px solid rgba(245,166,35,.3);
+  color: #f5a623; border-radius: 100px;
+  padding: 6px 16px; font-size: .82rem; font-weight: 600; letter-spacing: .08em;
+  margin-bottom: 24px; width: fit-content;
+  animation: fadeUp .8s ease both;
+}
+.badge-dot { font-size: .5rem; animation: blink 1.5s step-end infinite; }
+
+.hero-title {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: clamp(2.8rem, 7vw, 5rem);
+  font-weight: 900; line-height: .95;
+  letter-spacing: -.01em; margin-bottom: 24px;
+  animation: fadeUp .8s .15s ease both;
+}
+.hero-title .accent    { color: #f5a623; }
+.hero-title .line-blue { color: #3a7bd5; }
+
+.hero-sub {
+  font-size: 1.1rem; font-weight: 300; line-height: 1.7;
+  color: rgba(255,255,255,.7); margin-bottom: 36px;
+  animation: fadeUp .8s .3s ease both;
+}
+.hero-sub strong { color: #fff; font-weight: 600; }
+
+.hero-btns {
+  display: flex; gap: 14px; flex-wrap: wrap;
+  margin-bottom: 36px;
+  animation: fadeUp .8s .45s ease both;
+}
+
+.hero-trust {
+  display: flex; gap: 24px; flex-wrap: wrap;
+  animation: fadeUp .8s .6s ease both;
+}
+.trust-item {
+  display: flex; align-items: center; gap: 6px;
+  font-size: .85rem; color: rgba(255,255,255,.55);
+}
+
+/* Imagen flotante */
+.hero-visual {
+  position: absolute; right: 5%; bottom: 0; z-index: 1;
+  width: clamp(260px, 36%, 460px);
+  animation: floatLogo 5s ease-in-out infinite alternate;
+}
+.hero-visual img {
+  width: 100%; height: auto;
+  filter: drop-shadow(0 20px 60px rgba(35,85,180,.5));
+  border-radius: 16px;
+}
+
+@media (max-width: 900px) { .hero-visual { display: none; } }
+@media (max-width: 480px) {
+  .hero-trust { flex-direction: column; gap: 10px; }
+}
+</style>
