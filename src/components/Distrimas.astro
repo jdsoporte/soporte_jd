@@ -1,0 +1,218 @@
+---
+import Icon from './Icon.astro';
+
+const funciones = [
+  { icon: "carrito", color: "#f7931e", titulo: "Pedidos ágiles desde cualquier lugar", desc: "Tus vendedores toman pedidos en segundos: buscan productos, ajustan cantidades y registran la ubicación GPS de la visita. Al confirmar, el pedido se envía por WhatsApp de forma inmediata." },
+  { icon: "billetera", color: "var(--c-ups)", titulo: "Precios según cada cliente", desc: "Maneja hasta tres tarifas de precio por producto. Al seleccionar el cliente, el sistema muestra automáticamente los precios que le corresponden." },
+  { icon: "caja", color: "var(--c-redes)", titulo: "Inventario y clientes siempre al día", desc: "Carga tu inventario y tu base de clientes desde Excel en minutos. Las actualizaciones nunca borran tu información: los registros existentes se conservan y los clientes que ya no aparecen quedan inactivos." },
+  { icon: "etiqueta", color: "var(--c-camaras)", titulo: "Proveedores, marcas y ofertas", desc: "Organiza tus productos por proveedor o marca y destaca los productos en oferta para impulsar la venta." },
+  { icon: "escudo", color: "var(--c-software)", titulo: "Control por perfiles", desc: "El administrador tiene acceso total; cada vendedor ve solo lo que necesita para su trabajo." },
+  { icon: "celular", color: "#0ea5a4", titulo: "A la medida de tu marca", desc: "Personaliza el logo y el número de WhatsApp de tu empresa, con modo claro y oscuro." },
+];
+
+const reportes = [
+  "Panel principal con indicadores y gráficas en tiempo real.",
+  "Reporte de impactos por cliente, vendedor y proveedor, exportable a Excel y PDF.",
+  "Estadísticas completas de ventas y desempeño.",
+  "Resumen de fin de ruta enviado por WhatsApp.",
+];
+
+// Datos de ejemplo para la vista del celular
+const items = [
+  { nombre: "Producto A · Caja x 12", cant: 3, precio: "$54.000" },
+  { nombre: "Producto B · Paca x 6", cant: 5, precio: "$37.500" },
+  { nombre: "Producto C · Unidad", cant: 10, precio: "$18.000", oferta: true },
+];
+---
+
+<section id="distrimas" aria-labelledby="distrimas-titulo">
+  <div class="dm-layout">
+    <!-- CELULAR (datos de ejemplo) -->
+    <div class="dm-phone-wrap" aria-hidden="true">
+      <div class="dm-phone">
+        <div class="dm-notch"></div>
+        <div class="dm-screen">
+          <div class="dm-top">
+            <strong>Nuevo pedido</strong>
+            <span class="dm-gps"><Icon name="ubicacion" size={12} /> GPS registrado</span>
+          </div>
+          <div class="dm-cliente">
+            <small>Cliente</small>
+            <b>Tienda La Esquina</b>
+            <span>Tarifa 2</span>
+          </div>
+          <div class="dm-buscar">Buscar producto…</div>
+          {items.map(i => (
+            <div class="dm-item">
+              <div>
+                <b>{i.nombre}</b>
+                {i.oferta && <em>Oferta</em>}
+              </div>
+              <div class="dm-cant"><i>−</i>{i.cant}<i>+</i></div>
+              <span>{i.precio}</span>
+            </div>
+          ))}
+          <div class="dm-total"><span>Total</span><b>$109.500</b></div>
+          <div class="dm-btn"><Icon name="chat" size={14} /> Confirmar y enviar por WhatsApp</div>
+        </div>
+      </div>
+      <div class="dm-float f1"><Icon name="grafica" size={16} /> Resumen de fin de ruta</div>
+      <div class="dm-float f2"><Icon name="caja" size={16} /> Carga desde Excel</div>
+    </div>
+
+    <!-- TEXTO -->
+    <div>
+      <span class="section-label">Proyecto destacado</span>
+      <h2 class="section-title" id="distrimas-titulo">
+        <span class="dm-marca">DISTRIMAS</span><br />
+        Gestión comercial para negocios con <em>vendedores y pedidos</em>
+      </h2>
+      <p class="section-desc">
+        DISTRIMAS es un sistema web que organiza la operación diaria de tu negocio: clientes, inventario,
+        pedidos y vendedores en un solo lugar. Funciona desde el computador o el celular, sin instalaciones,
+        para que tu equipo trabaje en la calle y tú tengas el control desde la oficina.
+      </p>
+
+      <div class="dm-reportes">
+        <strong><Icon name="grafica" size={18} /> Reportes que sirven para decidir</strong>
+        <ul>
+          {reportes.map(r => <li><Icon name="check" size={16} /> {r}</li>)}
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="dm-grid">
+    {funciones.map(f => (
+      <article class="dm-card" style={`--color:${f.color}`}>
+        <span class="dm-icon"><Icon name={f.icon} size={22} /></span>
+        <h3>{f.titulo}</h3>
+        <p>{f.desc}</p>
+      </article>
+    ))}
+  </div>
+
+  <div class="dm-cta">
+    <p>¿Tu negocio vende con ruta, vendedores o pedidos? <strong>DISTRIMAS te ayuda a vender más, con menos errores y con la información a la mano.</strong></p>
+    <div class="dm-cta-btns">
+      <a
+        href="https://wa.me/573016537553?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20DISTRIMAS"
+        class="btn-primary" target="_blank" rel="noopener noreferrer"
+      >
+        <Icon name="chat" /> Quiero DISTRIMAS
+      </a>
+      <a href="https://distrimas.soportejd.com" class="btn-secondary" target="_blank" rel="noopener noreferrer">
+        distrimas.soportejd.com <Icon name="flecha" />
+      </a>
+    </div>
+  </div>
+</section>
+
+<style>
+section { background: #fff; }
+#distrimas .section-label { color: var(--naranja-oscuro); background: rgba(247,147,30,.1); }
+.dm-marca { color: var(--naranja); letter-spacing: .02em; }
+
+.dm-layout { display: grid; grid-template-columns: .9fr 1.1fr; gap: 64px; align-items: center; }
+
+/* Celular */
+.dm-phone-wrap { position: relative; display: flex; justify-content: center; padding: 20px 0; }
+.dm-phone-wrap::before {
+  content: ''; position: absolute; width: 360px; height: 360px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(247,147,30,.25), transparent 70%);
+  top: 50%; left: 50%; transform: translate(-50%, -50%);
+}
+.dm-phone {
+  position: relative; width: 270px; border-radius: 38px; padding: 12px;
+  background: #14213d; box-shadow: 0 30px 60px rgba(20,33,61,.25);
+}
+.dm-notch { width: 90px; height: 18px; background: #14213d; border-radius: 0 0 12px 12px; position: absolute; top: 12px; left: 50%; transform: translateX(-50%); z-index: 2; }
+.dm-screen {
+  background: #f8fafc; border-radius: 28px; padding: 30px 14px 16px;
+  font-family: system-ui, -apple-system, 'Segoe UI', sans-serif; color: #0F172A;
+}
+.dm-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+.dm-top strong { font-size: .9rem; }
+.dm-gps { display: inline-flex; align-items: center; gap: 3px; font-size: .58rem; font-weight: 700; color: var(--c-ups); background: #e7f7ee; padding: 3px 7px; border-radius: 100px; }
+.dm-cliente { background: #fff; border: 1px solid #e2e8f0; border-radius: 12px; padding: 8px 10px; margin-bottom: 8px; display: grid; grid-template-columns: 1fr auto; }
+.dm-cliente small { grid-column: 1 / -1; font-size: .56rem; color: #64748B; }
+.dm-cliente b { font-size: .76rem; }
+.dm-cliente span { font-size: .58rem; font-weight: 700; color: var(--naranja-oscuro); background: #fff3e3; padding: 2px 7px; border-radius: 100px; align-self: center; }
+.dm-buscar { font-size: .66rem; color: #94a3b8; background: #fff; border: 1px solid #e2e8f0; border-radius: 10px; padding: 7px 10px; margin-bottom: 8px; }
+.dm-item {
+  display: grid; grid-template-columns: 1fr auto auto; gap: 8px; align-items: center;
+  background: #fff; border-radius: 10px; padding: 8px 10px; margin-bottom: 6px; border: 1px solid #e2e8f0;
+}
+.dm-item b { display: block; font-size: .64rem; }
+.dm-item em { font-style: normal; font-size: .52rem; font-weight: 700; color: #fff; background: var(--c-camaras); padding: 1px 6px; border-radius: 100px; }
+.dm-item span { font-size: .64rem; font-weight: 700; }
+.dm-cant { display: flex; align-items: center; gap: 5px; font-size: .64rem; font-weight: 700; }
+.dm-cant i { font-style: normal; width: 16px; height: 16px; border-radius: 5px; background: #f1f5f9; display: flex; align-items: center; justify-content: center; }
+.dm-total { display: flex; justify-content: space-between; padding: 8px 4px; font-size: .78rem; }
+.dm-btn {
+  display: flex; align-items: center; justify-content: center; gap: 5px;
+  background: #25d366; color: #fff; font-size: .66rem; font-weight: 700;
+  padding: 9px; border-radius: 10px;
+}
+.dm-float {
+  position: absolute; display: flex; align-items: center; gap: 8px;
+  background: #fff; border-radius: 12px; padding: 9px 13px;
+  font-size: .82rem; font-weight: 700; color: var(--texto);
+  box-shadow: var(--sombra-fuerte);
+  animation: floaty 4s ease-in-out infinite alternate;
+}
+.dm-float :global(svg) { color: var(--naranja); }
+.f1 { top: 46%; right: 0; }
+.f2 { bottom: 14%; left: 0; animation-delay: 1.5s; }
+.f2 :global(svg) { color: var(--c-redes); }
+
+/* Reportes */
+.dm-reportes {
+  margin-top: 26px; background: var(--fondo-suave); border-radius: 18px; padding: 20px 22px;
+  border-left: 5px solid var(--naranja);
+}
+.dm-reportes strong { display: flex; align-items: center; gap: 8px; font-size: 1.05rem; margin-bottom: 10px; }
+.dm-reportes strong :global(svg) { color: var(--naranja); }
+.dm-reportes ul { list-style: none; display: grid; gap: 8px; }
+.dm-reportes li { display: flex; gap: 8px; font-size: .93rem; color: var(--texto-suave); line-height: 1.5; }
+.dm-reportes li :global(svg) { color: var(--c-ups); min-width: 16px; margin-top: 3px; }
+
+/* Funciones */
+.dm-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; margin-top: 56px; }
+.dm-card {
+  background: #fff; border-radius: 20px; padding: 26px 24px;
+  border: 1px solid var(--borde); box-shadow: var(--sombra);
+  transition: transform .25s, box-shadow .25s;
+}
+.dm-card:hover { transform: translateY(-6px); box-shadow: 0 18px 40px color-mix(in srgb, var(--color) 20%, transparent); }
+.dm-icon {
+  width: 48px; height: 48px; border-radius: 14px; margin-bottom: 14px;
+  background: color-mix(in srgb, var(--color) 12%, #fff); color: var(--color);
+  display: flex; align-items: center; justify-content: center;
+}
+.dm-card h3 { font-family: 'Barlow Condensed', sans-serif; font-size: 1.3rem; font-weight: 800; line-height: 1.15; margin-bottom: 8px; }
+.dm-card p { font-size: .92rem; color: var(--texto-suave); line-height: 1.6; }
+
+/* Llamado final */
+.dm-cta {
+  margin-top: 48px; border-radius: 24px; padding: 32px;
+  background: linear-gradient(135deg, #fff6ea, #fff 60%);
+  border: 1px solid #fde3c0;
+  display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap;
+}
+.dm-cta p { font-size: 1.08rem; line-height: 1.6; max-width: 620px; color: var(--texto-suave); }
+.dm-cta strong { color: var(--texto); }
+.dm-cta-btns { display: flex; gap: 12px; flex-wrap: wrap; }
+
+@media (max-width: 1000px) {
+  .dm-layout { grid-template-columns: 1fr; gap: 40px; }
+  .dm-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 640px) {
+  .dm-grid { grid-template-columns: 1fr; }
+  .dm-cta { padding: 24px 20px; }
+  .f1 { right: 0; top: 4%; }
+  .f2 { left: 0; bottom: 4%; }
+  .dm-float { font-size: .74rem; }
+}
+</style>
