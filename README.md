@@ -1,158 +1,63 @@
-# Soporte JD – Landing Page en Astro
+# Soporte JD – Página web
 
-## 📁 Estructura del proyecto
+Página de Soporte JD (Montería, Córdoba) hecha en Astro. Se publica en **soportejd.com** con Cloudflare Workers.
+
+## Estructura
 
 ```
-soporte-jd/
+soporte_jd/
 ├── public/
 │   ├── logo.jpg
-│   ├── img/              ← FOTOS DE LOS SERVICIOS (ver abajo)
+│   ├── img/                  Fotos de los servicios (ver abajo)
 │   └── robots.txt
 ├── src/
 │   ├── components/
 │   │   ├── Navbar.astro
 │   │   ├── Hero.astro
 │   │   ├── Servicios.astro
-│   │   ├── Software.astro      ← Software, ERP y proyectos (Doret, DISTRIMAS)
+│   │   ├── Software.astro    Software, ERP y proyectos (Doret, DISTRIMAS)
+│   │   ├── Distrimas.astro
 │   │   ├── Proceso.astro
 │   │   ├── Contacto.astro
-│   │   └── Footer.astro
+│   │   ├── Footer.astro
+│   │   ├── Foto.astro        Foto con color de respaldo
+│   │   └── Icon.astro        Íconos SVG
 │   ├── data/
-│   │   └── servicios.ts        ← Textos, colores y fotos de los 5 servicios
+│   │   └── servicios.ts      Textos, colores y fotos de los 5 servicios
 │   ├── layouts/
-│   │   └── Layout.astro
+│   │   └── Layout.astro      SEO, Open Graph y datos de negocio local
 │   ├── pages/
 │   │   └── index.astro
 │   └── styles/
 │       └── global.css
 ├── astro.config.mjs
+├── wrangler.jsonc            Configuración del Worker de Cloudflare
 └── package.json
 ```
 
----
+## Uso local
 
-## 🚀 Instalación y uso
-
-### 1. Instalar dependencias
 ```bash
 npm install
-```
-
-### 2. Servidor de desarrollo local
-```bash
-npm run dev
-```
-Abre http://localhost:4321 en tu navegador.
-
-### 3. Construir para producción
-```bash
-npm run build
-```
-Los archivos listos para subir quedan en la carpeta `/dist`
-
-### 4. Vista previa de producción
-```bash
+npm run dev       # http://localhost:4321
+npm run build     # genera la carpeta dist
 npm run preview
 ```
 
----
+## Fotos de los servicios
 
-## 🖼️ Fotos de los servicios
-
-Las fotos van en `public/img/` con estos nombres exactos:
+Van en `public/img/` con estos nombres exactos:
 `camaras.jpg`, `computadores.jpg`, `software.jpg`, `ups.jpg`, `redes.jpg`.
 Si una foto no existe, la tarjeta muestra el color del servicio con su ícono.
 
-## ☁️ Cloudflare Pages
+## Publicación (Cloudflare)
 
-- Framework: **Astro** · Comando de build: `npm run build` · Carpeta de salida: `dist`
-- Dominio: `soportejd.com` (Custom domains en el proyecto de Pages)
+- Worker: `soporte-jd`, conectado a este repositorio. Cada cambio en `main` se publica solo.
+- Comando de compilación: `npm run build` · Comando de implementación: `npx wrangler deploy`
+- `wrangler.jsonc` publica la carpeta `dist`.
+- Dominios: `soportejd.com` y `www.soportejd.com`.
 
----
+## Contacto
 
-## ⚙️ Configuración antes de subir
-
-### A. Cambiar el dominio
-En `astro.config.mjs`, reemplaza:
-```js
-site: 'https://www.soporte-jd.com'
-```
-por tu dominio real, por ejemplo:
-```js
-site: 'https://www.tudominio.com'
-```
-
-También actualiza la URL en `src/layouts/Layout.astro` (campo `"url"` del schema JSON-LD).
-
-### B. Agregar tu logo
-- Copia tu imagen de logo a `/public/logo.jpg`
-- Recomendado: formato JPG o PNG, mínimo 200x200px
-
-### C. Imagen para redes sociales (OG Image)
-- Crea una imagen de 1200×630 píxeles con tu logo y nombre
-- Guárdala como `/public/og-image.jpg`
-- Esta imagen aparece cuando alguien comparte tu página en WhatsApp o Facebook
-
----
-
-## 📲 Activar redes sociales
-Cuando tengas tus perfiles, busca en `src/components/Contacto.astro` la sección marcada con:
-```
-<!-- INSTRUCCIONES PARA ACTIVAR REDES SOCIALES -->
-```
-Sigue los 3 pasos indicados ahí.
-
----
-
-## 🌐 Subir al hosting
-
-### Opción 1 – Hosting tradicional (cPanel, etc.)
-1. Ejecuta `npm run build`
-2. Sube el contenido de la carpeta `/dist` a la carpeta `public_html` de tu hosting
-3. ¡Listo!
-
-### Opción 2 – Netlify (gratis y recomendado)
-1. Crea cuenta en netlify.com
-2. Arrastra la carpeta `/dist` al panel de Netlify
-3. Conecta tu dominio en la configuración
-
-### Opción 3 – Vercel (gratis)
-1. Sube el proyecto a GitHub
-2. Conecta el repositorio en vercel.com
-3. Se despliega automáticamente
-
----
-
-## 🔍 SEO incluido
-
-- ✅ Meta tags completos (title, description, keywords)
-- ✅ Open Graph (Facebook, WhatsApp)
-- ✅ Twitter Card
-- ✅ Schema.org LocalBusiness con datos de Montería
-- ✅ Geo tags (latitud/longitud Montería)
-- ✅ robots.txt
-- ✅ Sitemap automático (actívalo en astro.config.mjs con @astrojs/sitemap)
-- ✅ HTML semántico (article, section, nav, main, footer)
-- ✅ Atributos aria-label para accesibilidad
-- ✅ Imágenes con alt text descriptivo
-- ✅ Carga rápida (Astro genera HTML estático)
-
-### Para activar el Sitemap automático:
-```bash
-npx astro add sitemap
-```
-Luego en `astro.config.mjs`:
-```js
-import sitemap from '@astrojs/sitemap';
-export default defineConfig({
-  site: 'https://www.tudominio.com',
-  integrations: [sitemap()],
-});
-```
-
----
-
-## 📞 Contacto del proyecto
-**Soporte JD** · Montería, Córdoba, Colombia
-- WhatsApp: +57 301 653 7553
-- Correo: jdsoporte98@gmail.com
+Soporte JD · Montería, Córdoba, Colombia
+WhatsApp: +57 301 653 7553 · Correo: jdsoporte98@gmail.com

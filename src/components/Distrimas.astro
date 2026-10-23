@@ -56,13 +56,11 @@ const items = [
           <div class="dm-btn"><Icon name="chat" size={14} /> Confirmar y enviar por WhatsApp</div>
         </div>
       </div>
-      <div class="dm-float f1"><Icon name="grafica" size={16} /> Resumen de fin de ruta</div>
-      <div class="dm-float f2"><Icon name="caja" size={16} /> Carga desde Excel</div>
     </div>
 
     <!-- TEXTO -->
     <div>
-      <span class="section-label">Proyecto destacado</span>
+      <span class="section-label">Proyecto</span>
       <h2 class="section-title" id="distrimas-titulo">
         <span class="dm-marca">DISTRIMAS</span><br />
         Gestión comercial para negocios con <em>vendedores y pedidos</em>
@@ -110,7 +108,7 @@ const items = [
 
 <style>
 section { background: #fff; }
-#distrimas .section-label { color: var(--naranja-oscuro); background: rgba(247,147,30,.1); }
+#distrimas .section-label { color: var(--naranja-oscuro); }
 .dm-marca { color: var(--naranja); letter-spacing: .02em; }
 
 .dm-layout { display: grid; grid-template-columns: .9fr 1.1fr; gap: 64px; align-items: center; }
@@ -154,17 +152,6 @@ section { background: #fff; }
   background: #25d366; color: #fff; font-size: .66rem; font-weight: 700;
   padding: 9px; border-radius: 10px;
 }
-.dm-float {
-  position: absolute; display: flex; align-items: center; gap: 8px;
-  background: #fff; border-radius: 12px; padding: 9px 13px;
-  font-size: .82rem; font-weight: 700; color: var(--texto);
-  box-shadow: var(--sombra-fuerte);
-  animation: floaty 4s ease-in-out infinite alternate;
-}
-.dm-float :global(svg) { color: var(--naranja); }
-.f1 { top: 46%; right: 0; }
-.f2 { bottom: 14%; left: 0; animation-delay: 1.5s; }
-.f2 :global(svg) { color: var(--c-redes); }
 
 /* Reportes */
 .dm-reportes {
@@ -211,8 +198,5 @@ section { background: #fff; }
 @media (max-width: 640px) {
   .dm-grid { grid-template-columns: 1fr; }
   .dm-cta { padding: 24px 20px; }
-  .f1 { right: 0; top: 4%; }
-  .f2 { left: 0; bottom: 4%; }
-  .dm-float { font-size: .74rem; }
 }
 </style>

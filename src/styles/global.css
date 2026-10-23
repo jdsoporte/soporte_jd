@@ -42,11 +42,13 @@ img { max-width: 100%; display: block; }
 
 /* ─── UTILIDADES ─── */
 .section-label {
-  display: inline-block;
-  font-size: .78rem; font-weight: 700; letter-spacing: .16em;
-  text-transform: uppercase; margin-bottom: 14px;
-  padding: 6px 14px; border-radius: 100px;
-  color: var(--azul); background: rgba(29, 95, 214, .08);
+  display: inline-flex; align-items: center; gap: 10px;
+  font-size: .8rem; font-weight: 700; letter-spacing: .14em;
+  text-transform: uppercase; margin-bottom: 12px;
+  color: var(--azul);
+}
+.section-label::before {
+  content: ''; width: 28px; height: 3px; border-radius: 2px; background: currentColor;
 }
 .section-title {
   font-family: 'Barlow Condensed', sans-serif;
@@ -54,11 +56,7 @@ img { max-width: 100%; display: block; }
   font-weight: 800; line-height: 1.05; letter-spacing: -.01em;
   margin-bottom: 16px; color: var(--texto);
 }
-.section-title em {
-  font-style: normal;
-  background: linear-gradient(90deg, var(--c-camaras), var(--naranja), var(--c-ups), var(--c-redes), var(--c-software));
-  -webkit-background-clip: text; background-clip: text; color: transparent;
-}
+.section-title em { font-style: normal; color: var(--azul); }
 .section-desc {
   color: var(--texto-suave);
   font-size: 1.05rem; line-height: 1.7; max-width: 600px;

@@ -3,13 +3,9 @@ import Icon from './Icon.astro';
 import Foto from './Foto.astro';
 import { servicios } from '../data/servicios';
 
-const [camaras, equipos, software, ups, redes] = servicios;
+const [camaras, equipos, , , redes] = servicios;
 ---
 <section id="inicio" aria-label="Inicio Soporte JD Montería">
-  <div class="blob b1" aria-hidden="true"></div>
-  <div class="blob b2" aria-hidden="true"></div>
-  <div class="blob b3" aria-hidden="true"></div>
-
   <div class="hero-content">
     <div class="hero-badge">
       <span class="badge-dot" aria-hidden="true">●</span>
@@ -54,8 +50,6 @@ const [camaras, equipos, software, ups, redes] = servicios;
     <Foto class="hv hv-main" src={camaras.foto} alt={camaras.alt} color={camaras.color} icon={camaras.icon} eager />
     <Foto class="hv hv-a" src={redes.foto} alt={redes.alt} color={redes.color} icon={redes.icon} eager />
     <Foto class="hv hv-b" src={equipos.foto} alt={equipos.alt} color={equipos.color} icon={equipos.icon} eager />
-    <div class="hv-card c1"><span style={`background:${software.color}`}><Icon name={software.icon} size={18} /></span> Software y ERP</div>
-    <div class="hv-card c2"><span style={`background:${ups.color}`}><Icon name={ups.icon} size={18} /></span> Mantenimiento UPS</div>
   </div>
 </section>
 
@@ -65,13 +59,8 @@ section {
   display: grid; grid-template-columns: 1.05fr 1fr; gap: 48px; align-items: center;
   padding: 120px 6% 80px;
   position: relative; overflow: hidden;
-  background: #fff;
+  background: linear-gradient(180deg, #fff 0%, var(--fondo-suave) 100%);
 }
-
-.blob { position: absolute; border-radius: 50%; filter: blur(70px); opacity: .22; pointer-events: none; }
-.b1 { width: 420px; height: 420px; background: var(--c-redes); top: -120px; right: 10%; }
-.b2 { width: 340px; height: 340px; background: var(--naranja); bottom: -120px; left: -80px; }
-.b3 { width: 300px; height: 300px; background: var(--c-software); bottom: 10%; right: -100px; }
 
 .hero-content { position: relative; z-index: 2; }
 
@@ -92,10 +81,7 @@ section {
   color: var(--texto); margin-bottom: 22px;
   animation: fadeUp .8s .1s ease both;
 }
-.grad {
-  background: linear-gradient(90deg, var(--c-camaras), var(--naranja) 30%, var(--c-ups) 55%, var(--c-redes) 75%, var(--c-software));
-  -webkit-background-clip: text; background-clip: text; color: transparent;
-}
+.grad { color: var(--naranja); }
 
 .hero-sub {
   font-size: 1.12rem; line-height: 1.7; color: var(--texto-suave);
@@ -131,20 +117,6 @@ section {
 .hero-visual :global(.hv-a) { bottom: 0; left: 0; width: 46%; height: 42%; }
 .hero-visual :global(.hv-b) { bottom: 6%; right: 0; width: 46%; height: 50%; }
 
-.hv-card {
-  position: absolute; z-index: 3;
-  display: flex; align-items: center; gap: 10px;
-  background: #fff; border-radius: 14px; padding: 10px 16px 10px 10px;
-  font-weight: 700; font-size: .92rem; color: var(--texto);
-  box-shadow: var(--sombra-fuerte);
-  animation: floaty 4s ease-in-out infinite alternate;
-}
-.hv-card span {
-  width: 34px; height: 34px; border-radius: 10px; color: #fff;
-  display: flex; align-items: center; justify-content: center;
-}
-.c1 { top: 8%; right: 0; }
-.c2 { top: 58%; left: 30%; animation-delay: 1.5s; }
 
 @media (max-width: 960px) {
   section { grid-template-columns: 1fr; min-height: auto; padding: 104px 16px 64px; }
@@ -152,7 +124,5 @@ section {
 }
 @media (max-width: 480px) {
   .hero-visual { height: 300px; }
-  .hv-card { font-size: .8rem; }
-  .c1 { top: auto; bottom: -14px; right: auto; left: 4%; }
 }
 </style>

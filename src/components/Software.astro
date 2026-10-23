@@ -92,7 +92,7 @@ const dona = categorias.map(c => {
           {menu.map((m, i) => <div class:list={['mk-item', { activo: i === 0 }]}>{m}</div>)}
         </aside>
         <div class="mk-main">
-          <div class="mk-hola">Bienvenido 👋</div>
+          <div class="mk-hola">Panel principal</div>
           <div class="mk-sub">Resumen general de tu negocio</div>
           <div class="mk-kpis">
             {kpis.map(k => (
@@ -162,7 +162,7 @@ const dona = categorias.map(c => {
 
 <style>
 section { background: var(--fondo-suave); }
-#software .section-label { color: var(--c-software); background: color-mix(in srgb, var(--c-software) 10%, #fff); }
+#software .section-label { color: var(--c-software); }
 
 .sw-layout {
   display: grid; grid-template-columns: 1fr 1.15fr; gap: 56px; align-items: center;
