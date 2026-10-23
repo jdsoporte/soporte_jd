@@ -2,7 +2,7 @@
 import Icon from './Icon.astro';
 
 const funciones = [
-  { icon: "carrito", color: "#f7931e", titulo: "Pedidos ágiles desde cualquier lugar", desc: "Tus vendedores toman pedidos en segundos: buscan productos, ajustan cantidades y registran la ubicación GPS de la visita. Al confirmar, el pedido se envía por WhatsApp de forma inmediata." },
+  { icon: "carrito", color: "var(--dm)", titulo: "Pedidos ágiles desde cualquier lugar", desc: "Tus vendedores toman pedidos en segundos: buscan productos, ajustan cantidades y registran la ubicación GPS de la visita. Al confirmar, el pedido se envía por WhatsApp de forma inmediata." },
   { icon: "billetera", color: "var(--c-ups)", titulo: "Precios según cada cliente", desc: "Maneja hasta tres tarifas de precio por producto. Al seleccionar el cliente, el sistema muestra automáticamente los precios que le corresponden." },
   { icon: "caja", color: "var(--c-redes)", titulo: "Inventario y clientes siempre al día", desc: "Carga tu inventario y tu base de clientes desde Excel en minutos. Las actualizaciones nunca borran tu información: los registros existentes se conservan y los clientes que ya no aparecen quedan inactivos." },
   { icon: "etiqueta", color: "var(--c-camaras)", titulo: "Proveedores, marcas y ofertas", desc: "Organiza tus productos por proveedor o marca y destaca los productos en oferta para impulsar la venta." },
@@ -16,6 +16,25 @@ const reportes = [
   "Estadísticas completas de ventas y desempeño.",
   "Resumen de fin de ruta enviado por WhatsApp.",
 ];
+
+// Datos de ejemplo para la vista del panel (no son datos reales)
+const menuDm = ["Dashboard", "Pedidos", "Estadísticas", "Impactos", "Clientes", "Inventario", "Grupos / Proveedores", "Rutas", "Programación"];
+const barras = [72, 80, 12, 70, 58, 55, 70, 52, 25, 66, 54, 65, 64, 75, 15, 45, 60, 68, 66, 55, 28, 76, 54, 57, 64, 18];
+const vendedores = [
+  { nombre: "Vendedor Ruta Norte", pedidos: 345, pct: 100 },
+  { nombre: "Vendedor Ruta Centro", pedidos: 349, pct: 87 },
+  { nombre: "Vendedor Ruta Sur", pedidos: 285, pct: 77 },
+  { nombre: "Vendedor Ruta Costa", pedidos: 320, pct: 62 },
+];
+const productos = [
+  { nombre: "Producto A", pct: 30, color: "#d62839" },
+  { nombre: "Producto B", pct: 28, color: "#8f1d2a" },
+  { nombre: "Producto C", pct: 17, color: "#e5606d" },
+  { nombre: "Producto D", pct: 14, color: "#b3202f" },
+  { nombre: "Producto E", pct: 11, color: "#f2a3ab" },
+];
+let acum = 0;
+const donaDm = productos.map(p => { const t = `${p.color} ${acum}% ${acum + p.pct}%`; acum += p.pct; return t; }).join(', ');
 
 // Datos de ejemplo para la vista del celular
 const items = [
@@ -80,6 +99,66 @@ const items = [
     </div>
   </div>
 
+  <!-- PANEL DEL ADMINISTRADOR (datos de ejemplo) -->
+  <div class="dm-panel" role="img" aria-label="Vista del panel de DISTRIMAS con datos de ejemplo">
+    <div class="dp-bar"><i></i><i></i><i></i><span>distrimas.soportejd.com/dashboard</span></div>
+    <div class="dp-app">
+      <aside class="dp-side">
+        <div class="dp-logo"><b>D</b><div><strong>DISTRIMAS</strong><small>Panel de gestión</small></div></div>
+        {menuDm.map((m, i) => <div class:list={['dp-item', { activo: i === 0 }]}>{m}</div>)}
+      </aside>
+      <div class="dp-main">
+        <div class="dp-hola">Hola, Administrador</div>
+        <div class="dp-sub">Resumen general del sistema</div>
+
+        <div class="dp-totales">
+          <div><span>Total con IVA (hoy)</span><strong>$686.850</strong></div>
+          <div class="rojo"><span>Total sin IVA (base para comisiones)</span><strong>$610.124</strong></div>
+          <small>14 pedidos</small>
+        </div>
+
+        <div class="dp-fila">
+          <div class="dp-card">
+            <div class="dp-t">Pedidos — últimos 30 días</div>
+            <div class="dp-barras">
+              {barras.map(b => <i style={`height:${b}%`}></i>)}
+            </div>
+          </div>
+          <div class="dp-card">
+            <div class="dp-t">Top vendedores del mes</div>
+            {vendedores.map((v, i) => (
+              <div class="dp-vend">
+                <span class="dp-pos">{i + 1}</span>
+                <div>
+                  <div class="dp-vend-n"><b>{v.nombre}</b><small>{v.pedidos} ped.</small></div>
+                  <div class="dp-prog"><i style={`width:${v.pct}%`}></i></div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div class="dp-fila dp-fila2">
+          <div class="dp-card">
+            <div class="dp-t">Impactos de ruta</div>
+            <div class="dp-imp">
+              <div><strong class="verde">274</strong><span>Compró</span></div>
+              <div><strong class="ambar">12</strong><span>No compró</span></div>
+              <div><strong class="rojo">3</strong><span>No visitó</span></div>
+            </div>
+          </div>
+          <div class="dp-card">
+            <div class="dp-t">Top productos del mes</div>
+            <div class="dp-dona-wrap">
+              <div class="dp-dona" style={`background: conic-gradient(${donaDm})`}></div>
+              <ul>{productos.map(p => <li><i style={`background:${p.color}`}></i>{p.nombre}<b>{p.pct}%</b></li>)}</ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <div class="dm-grid">
     {funciones.map(f => (
       <article class="dm-card" style={`--color:${f.color}`}>
@@ -107,9 +186,10 @@ const items = [
 </section>
 
 <style>
-section { background: #fff; }
-#distrimas .section-label { color: var(--naranja-oscuro); }
-.dm-marca { color: var(--naranja); letter-spacing: .02em; }
+section { background: #fff; --dm: #d62839; --dm-oscuro: #a81d2c; }
+#distrimas .section-label { color: var(--dm); }
+#distrimas .section-title em { color: var(--dm); }
+.dm-marca { color: var(--dm); letter-spacing: .02em; }
 
 .dm-layout { display: grid; grid-template-columns: .9fr 1.1fr; gap: 64px; align-items: center; }
 
@@ -117,7 +197,7 @@ section { background: #fff; }
 .dm-phone-wrap { position: relative; display: flex; justify-content: center; padding: 20px 0; }
 .dm-phone-wrap::before {
   content: ''; position: absolute; width: 360px; height: 360px; border-radius: 50%;
-  background: radial-gradient(circle, rgba(247,147,30,.25), transparent 70%);
+  background: radial-gradient(circle, rgba(214,40,57,.16), transparent 70%);
   top: 50%; left: 50%; transform: translate(-50%, -50%);
 }
 .dm-phone {
@@ -135,7 +215,7 @@ section { background: #fff; }
 .dm-cliente { background: #fff; border: 1px solid #e2e8f0; border-radius: 12px; padding: 8px 10px; margin-bottom: 8px; display: grid; grid-template-columns: 1fr auto; }
 .dm-cliente small { grid-column: 1 / -1; font-size: .56rem; color: #64748B; }
 .dm-cliente b { font-size: .76rem; }
-.dm-cliente span { font-size: .58rem; font-weight: 700; color: var(--naranja-oscuro); background: #fff3e3; padding: 2px 7px; border-radius: 100px; align-self: center; }
+.dm-cliente span { font-size: .58rem; font-weight: 700; color: var(--dm-oscuro); background: #fdecee; padding: 2px 7px; border-radius: 100px; align-self: center; }
 .dm-buscar { font-size: .66rem; color: #94a3b8; background: #fff; border: 1px solid #e2e8f0; border-radius: 10px; padding: 7px 10px; margin-bottom: 8px; }
 .dm-item {
   display: grid; grid-template-columns: 1fr auto auto; gap: 8px; align-items: center;
@@ -156,10 +236,10 @@ section { background: #fff; }
 /* Reportes */
 .dm-reportes {
   margin-top: 26px; background: var(--fondo-suave); border-radius: 18px; padding: 20px 22px;
-  border-left: 5px solid var(--naranja);
+  border-left: 5px solid var(--dm);
 }
 .dm-reportes strong { display: flex; align-items: center; gap: 8px; font-size: 1.05rem; margin-bottom: 10px; }
-.dm-reportes strong :global(svg) { color: var(--naranja); }
+.dm-reportes strong :global(svg) { color: var(--dm); }
 .dm-reportes ul { list-style: none; display: grid; gap: 8px; }
 .dm-reportes li { display: flex; gap: 8px; font-size: .93rem; color: var(--texto-suave); line-height: 1.5; }
 .dm-reportes li :global(svg) { color: var(--c-ups); min-width: 16px; margin-top: 3px; }
@@ -183,20 +263,85 @@ section { background: #fff; }
 /* Llamado final */
 .dm-cta {
   margin-top: 48px; border-radius: 24px; padding: 32px;
-  background: linear-gradient(135deg, #fff6ea, #fff 60%);
-  border: 1px solid #fde3c0;
+  background: #fdf2f3;
+  border: 1px solid #f6d3d7;
   display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap;
 }
 .dm-cta p { font-size: 1.08rem; line-height: 1.6; max-width: 620px; color: var(--texto-suave); }
 .dm-cta strong { color: var(--texto); }
 .dm-cta-btns { display: flex; gap: 12px; flex-wrap: wrap; }
+.dm-cta .btn-primary { background: var(--dm); box-shadow: 0 8px 22px rgba(214,40,57,.3); }
+.dm-cta .btn-primary:hover { background: var(--dm-oscuro); }
+
+/* Panel del administrador */
+.dm-panel {
+  margin-top: 64px; background: #fff; border-radius: 18px; overflow: hidden;
+  border: 1px solid var(--borde); box-shadow: 0 30px 60px rgba(20,33,61,.14);
+  font-family: system-ui, -apple-system, 'Segoe UI', sans-serif; color: #0F172A;
+}
+.dp-bar { display: flex; align-items: center; gap: 6px; padding: 10px 14px; background: #f1f5f9; border-bottom: 1px solid #e2e8f0; }
+.dp-bar i { width: 10px; height: 10px; border-radius: 50%; background: #ff5f57; }
+.dp-bar i:nth-child(2) { background: #febc2e; }
+.dp-bar i:nth-child(3) { background: #28c840; }
+.dp-bar span { margin-left: 10px; font-size: .72rem; color: #64748B; background: #fff; border-radius: 6px; padding: 3px 10px; }
+.dp-app { display: grid; grid-template-columns: 190px 1fr; }
+.dp-side { border-right: 1px solid #e2e8f0; padding: 16px 10px; }
+.dp-logo { display: flex; align-items: center; gap: 10px; margin: 0 4px 16px; }
+.dp-logo b { width: 32px; height: 32px; border-radius: 8px; background: var(--dm); color: #fff; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; }
+.dp-logo strong { display: block; font-size: .8rem; }
+.dp-logo small { font-size: .62rem; color: #64748B; }
+.dp-item { font-size: .74rem; font-weight: 500; padding: 8px 10px; border-radius: 8px; color: #334155; margin-bottom: 2px; }
+.dp-item.activo { background: #fde8ea; color: var(--dm); font-weight: 700; }
+.dp-main { padding: 20px; background: #f8fafc; }
+.dp-hola { font-weight: 700; font-size: 1.05rem; }
+.dp-sub { font-size: .74rem; color: #64748B; margin-bottom: 14px; }
+.dp-totales {
+  display: flex; align-items: flex-end; gap: 28px; flex-wrap: wrap;
+  background: #eef1f5; border: 1px solid #e2e8f0; border-radius: 12px; padding: 14px 18px; margin-bottom: 12px;
+}
+.dp-totales span { display: block; font-size: .6rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: #64748B; }
+.dp-totales strong { font-size: 1.35rem; font-weight: 800; }
+.dp-totales .rojo span, .dp-totales .rojo strong { color: var(--dm); }
+.dp-totales small { margin-left: auto; font-size: .66rem; color: #64748B; }
+.dp-fila { display: grid; grid-template-columns: 1.1fr 1fr; gap: 12px; margin-bottom: 12px; }
+.dp-fila2 { grid-template-columns: 1fr 1.1fr; margin-bottom: 0; }
+.dp-card { background: #fff; border: 1px solid #e2e8f0; border-radius: 12px; padding: 14px; }
+.dp-t { font-size: .76rem; font-weight: 700; margin-bottom: 12px; }
+.dp-barras { display: flex; align-items: flex-end; gap: 3px; height: 120px; border-bottom: 1px solid #e2e8f0; }
+.dp-barras i { flex: 1; background: var(--dm); border-radius: 2px 2px 0 0; }
+.dp-vend { display: grid; grid-template-columns: 22px 1fr; gap: 10px; align-items: center; margin-bottom: 10px; }
+.dp-pos { width: 22px; height: 22px; border-radius: 50%; background: var(--dm); color: #fff; font-size: .62rem; font-weight: 700; display: flex; align-items: center; justify-content: center; }
+.dp-vend:nth-of-type(3) .dp-pos { background: #f59e0b; }
+.dp-vend-n { display: flex; justify-content: space-between; font-size: .66rem; margin-bottom: 4px; }
+.dp-vend-n small { color: #64748B; }
+.dp-prog { height: 5px; background: #f1f5f9; border-radius: 4px; overflow: hidden; }
+.dp-prog i { display: block; height: 100%; background: var(--dm); border-radius: 4px; }
+.dp-imp { display: grid; grid-template-columns: repeat(3, 1fr); text-align: center; padding: 10px 0; }
+.dp-imp strong { display: block; font-size: 1.6rem; font-weight: 800; }
+.dp-imp span { font-size: .6rem; font-weight: 600; color: #64748B; text-transform: uppercase; letter-spacing: .04em; }
+.dp-imp .verde { color: #16a34a; }
+.dp-imp .ambar { color: #f59e0b; }
+.dp-imp .rojo { color: var(--dm); }
+.dp-dona-wrap { display: flex; align-items: center; gap: 16px; }
+.dp-dona { width: 92px; height: 92px; min-width: 92px; border-radius: 50%; position: relative; }
+.dp-dona::before { content: ''; position: absolute; inset: 20px; background: #fff; border-radius: 50%; }
+.dp-dona-wrap ul { list-style: none; flex: 1; display: grid; gap: 5px; }
+.dp-dona-wrap li { display: flex; align-items: center; gap: 6px; font-size: .64rem; color: #334155; }
+.dp-dona-wrap li i { width: 8px; height: 8px; border-radius: 50%; }
+.dp-dona-wrap li b { margin-left: auto; font-weight: 600; color: #64748B; }
 
 @media (max-width: 1000px) {
   .dm-layout { grid-template-columns: 1fr; gap: 40px; }
   .dm-grid { grid-template-columns: 1fr 1fr; }
 }
+@media (max-width: 760px) {
+  .dp-app { grid-template-columns: 1fr; }
+  .dp-side { display: none; }
+  .dp-fila, .dp-fila2 { grid-template-columns: 1fr; }
+}
 @media (max-width: 640px) {
   .dm-grid { grid-template-columns: 1fr; }
+  .dp-main { padding: 14px; }
   .dm-cta { padding: 24px 20px; }
 }
 </style>
