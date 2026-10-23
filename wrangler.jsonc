@@ -1,0 +1,8 @@
+{
+  // Worker de Cloudflare que publica la página estática generada por Astro
+  "name": "soporte-jd",
+  "compatibility_date": "2026-10-01",
+  "assets": {
+    "directory": "./dist"
+  }
+}
