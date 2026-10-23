@@ -1,7 +1,9 @@
 import { defineConfig } from 'astro/config';
+import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
-  site: 'https://www.soporte-jd.com', // ← Cambia esto por tu dominio real
+  site: 'https://soportejd.com',
+  integrations: [sitemap()],
   compressHTML: true,
   build: {
     inlineStylesheets: 'auto',

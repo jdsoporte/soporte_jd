@@ -7,10 +7,10 @@ export interface Props {
 }
 
 const {
-  title = "Soporte JD | Redes, CCTV, Soporte Técnico y Menú Digital – Montería, Córdoba",
-  description = "Soporte JD en Montería, Córdoba. Instalación de redes y datos, cámaras CCTV, reparación de computadores y menús digitales para negocios. Atención a domicilio. ¡Llámanos ya!",
+  title = "Soporte JD | Cámaras de Seguridad, Computadores, Software, UPS y Redes – Montería, Córdoba",
+  description = "Soporte JD en Montería, Córdoba. Instalación de cámaras de seguridad, reparación y venta de computadores, desarrollo de software y ERP comercial, mantenimiento de UPS e instalación de redes y datos. Atención a domicilio.",
   canonical = Astro.url.href,
-  image = "/og-image.jpg",
+  image = "https://soportejd.com/logo.jpg",
 } = Astro.props;
 
 const schema = {
@@ -18,7 +18,7 @@ const schema = {
   "@type": "LocalBusiness",
   "name": "Soporte JD",
   "description": description,
-  "url": "https://www.soporte-jd.com",
+  "url": "https://soportejd.com",
   "telephone": "+573016537553",
   "email": "jdsoporte98@gmail.com",
   "address": {
@@ -37,11 +37,11 @@ const schema = {
     { "@type": "AdministrativeArea", "name": "Córdoba" }
   ],
   "serviceType": [
-    "Instalación de redes y datos",
-    "Cámaras CCTV",
-    "Soporte técnico",
-    "Reparación de computadores",
-    "Menú digital para negocios"
+    "Instalación de cámaras de seguridad",
+    "Reparación y venta de computadores",
+    "Desarrollo de software y ERP comercial",
+    "Mantenimiento de UPS",
+    "Instalación de redes y datos"
   ],
   "openingHoursSpecification": {
     "@type": "OpeningHoursSpecification",
@@ -68,7 +68,7 @@ const schema = {
   <!-- SEO PRIMARIO -->
   <title>{title}</title>
   <meta name="description" content={description} />
-  <meta name="keywords" content="soporte técnico Montería, cámaras CCTV Montería, redes y datos Córdoba, menú digital restaurantes Montería, reparación computadores Montería, instalación wifi Montería, videovigilancia Córdoba, soporte informático Montería, Soporte JD" />
+  <meta name="keywords" content="soporte técnico Montería, cámaras de seguridad Montería, CCTV Montería, venta de computadores Montería, reparación computadores Montería, desarrollo de software Montería, ERP comercial, facturación electrónica, mantenimiento UPS Montería, redes y datos Córdoba, Soporte JD" />
   <meta name="author" content="Soporte JD" />
   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
   <link rel="canonical" href={canonical} />

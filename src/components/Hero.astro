@@ -1,26 +1,39 @@
 ---
+import Icon from './Icon.astro';
+import Foto from './Foto.astro';
+import { servicios } from '../data/servicios';
+
+const [camaras, equipos, software, ups, redes] = servicios;
 ---
 <section id="inicio" aria-label="Inicio Soporte JD Montería">
-  <div class="hero-bg-grid" aria-hidden="true"></div>
-  <div class="hero-glow" aria-hidden="true"></div>
+  <div class="blob b1" aria-hidden="true"></div>
+  <div class="blob b2" aria-hidden="true"></div>
+  <div class="blob b3" aria-hidden="true"></div>
 
   <div class="hero-content">
-    <div class="hero-badge" aria-label="Ubicación">
+    <div class="hero-badge">
       <span class="badge-dot" aria-hidden="true">●</span>
       Montería, Córdoba · Servicio a domicilio
     </div>
 
     <h1 class="hero-title">
-      <span class="line-blue">PROTEGE</span><br />
-      TU ESPACIO,<br />
-      <span class="accent">CONECTA</span><br />
-      TU FUTURO
+      Protege tu espacio,<br />
+      <span class="grad">conecta tu futuro</span>
     </h1>
 
     <p class="hero-sub">
-      Redes y datos, cámaras CCTV, soporte técnico y menús digitales para tu negocio.
-      Atención personalizada <strong>donde tú estés</strong> en Montería y toda la región.
+      Cámaras de seguridad, reparación y venta de computadores, desarrollo de software,
+      mantenimiento de UPS e instalación de redes y datos.
+      Atención personalizada <strong>donde tú estés</strong>.
     </p>
+
+    <ul class="hero-chips" aria-label="Servicios">
+      {servicios.map(s => (
+        <li style={`--color:${s.color}`}>
+          <a href={`#${s.id}`}><Icon name={s.icon} size={16} /> {s.corto}</a>
+        </li>
+      ))}
+    </ul>
 
     <div class="hero-btns">
       <a
@@ -28,120 +41,118 @@
         class="btn-primary"
         target="_blank"
         rel="noopener noreferrer"
-        aria-label="Cotizar por WhatsApp"
       >
-        📲 Cotizar por WhatsApp
+        <Icon name="chat" /> Cotizar por WhatsApp
       </a>
-      <a href="#servicios" class="btn-secondary" aria-label="Ver nuestros servicios">
-        Ver Servicios ↓
+      <a href="#servicios" class="btn-secondary">
+        Ver servicios <Icon name="flecha" />
       </a>
-    </div>
-
-    <div class="hero-trust">
-      <div class="trust-item"><span>✅</span> Sin oficina, con resultados</div>
-      <div class="trust-item"><span>⚡</span> Respuesta rápida</div>
-      <div class="trust-item"><span>🔒</span> Trabajo garantizado</div>
     </div>
   </div>
 
   <div class="hero-visual" aria-hidden="true">
-    <img
-      src="/logo.jpg"
-      alt="Soporte JD - Redes, CCTV y soporte técnico en Montería"
-      width="440"
-      height="440"
-      loading="eager"
-      fetchpriority="high"
-    />
+    <Foto class="hv hv-main" src={camaras.foto} alt={camaras.alt} color={camaras.color} icon={camaras.icon} eager />
+    <Foto class="hv hv-a" src={redes.foto} alt={redes.alt} color={redes.color} icon={redes.icon} eager />
+    <Foto class="hv hv-b" src={equipos.foto} alt={equipos.alt} color={equipos.color} icon={equipos.icon} eager />
+    <div class="hv-card c1"><span style={`background:${software.color}`}><Icon name={software.icon} size={18} /></span> Software y ERP</div>
+    <div class="hv-card c2"><span style={`background:${ups.color}`}><Icon name={ups.icon} size={18} /></span> Mantenimiento UPS</div>
   </div>
 </section>
 
 <style>
 section {
   min-height: 100vh;
-  display: flex; align-items: center;
+  display: grid; grid-template-columns: 1.05fr 1fr; gap: 48px; align-items: center;
   padding: 120px 6% 80px;
   position: relative; overflow: hidden;
-  background: linear-gradient(135deg, #0d1117 0%, #0d1b3e 60%, #0d1117 100%);
+  background: #fff;
 }
 
-.hero-bg-grid {
-  position: absolute; inset: 0; pointer-events: none;
-  background-image:
-    linear-gradient(rgba(35,85,180,.07) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(35,85,180,.07) 1px, transparent 1px);
-  background-size: 48px 48px;
-  animation: gridMove 20s linear infinite;
-}
-.hero-glow {
-  position: absolute; top: -20%; right: -10%;
-  width: 600px; height: 600px; border-radius: 50%;
-  background: radial-gradient(circle, rgba(35,85,180,.35) 0%, transparent 70%);
-  pointer-events: none;
-  animation: pulse 6s ease-in-out infinite alternate;
-}
+.blob { position: absolute; border-radius: 50%; filter: blur(70px); opacity: .22; pointer-events: none; }
+.b1 { width: 420px; height: 420px; background: var(--c-redes); top: -120px; right: 10%; }
+.b2 { width: 340px; height: 340px; background: var(--naranja); bottom: -120px; left: -80px; }
+.b3 { width: 300px; height: 300px; background: var(--c-software); bottom: 10%; right: -100px; }
 
-.hero-content {
-  position: relative; z-index: 2; max-width: 600px;
-  display: flex; flex-direction: column; gap: 0;
-}
+.hero-content { position: relative; z-index: 2; }
 
 .hero-badge {
   display: inline-flex; align-items: center; gap: 8px;
-  background: rgba(245,166,35,.12); border: 1px solid rgba(245,166,35,.3);
-  color: #f5a623; border-radius: 100px;
-  padding: 6px 16px; font-size: .82rem; font-weight: 600; letter-spacing: .08em;
-  margin-bottom: 24px; width: fit-content;
+  background: rgba(247,147,30,.1); color: var(--naranja-oscuro);
+  border-radius: 100px; padding: 7px 16px;
+  font-size: .85rem; font-weight: 700; letter-spacing: .04em;
+  margin-bottom: 22px;
   animation: fadeUp .8s ease both;
 }
-.badge-dot { font-size: .5rem; animation: blink 1.5s step-end infinite; }
+.badge-dot { font-size: .55rem; color: var(--c-ups); animation: blink 1.5s step-end infinite; }
 
 .hero-title {
   font-family: 'Barlow Condensed', sans-serif;
-  font-size: clamp(2.8rem, 7vw, 5rem);
-  font-weight: 900; line-height: .95;
-  letter-spacing: -.01em; margin-bottom: 24px;
-  animation: fadeUp .8s .15s ease both;
+  font-size: clamp(2.6rem, 6vw, 4.6rem);
+  font-weight: 900; line-height: 1; letter-spacing: -.01em;
+  color: var(--texto); margin-bottom: 22px;
+  animation: fadeUp .8s .1s ease both;
 }
-.hero-title .accent    { color: #f5a623; }
-.hero-title .line-blue { color: #3a7bd5; }
+.grad {
+  background: linear-gradient(90deg, var(--c-camaras), var(--naranja) 30%, var(--c-ups) 55%, var(--c-redes) 75%, var(--c-software));
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
 
 .hero-sub {
-  font-size: 1.1rem; font-weight: 300; line-height: 1.7;
-  color: rgba(255,255,255,.7); margin-bottom: 36px;
+  font-size: 1.12rem; line-height: 1.7; color: var(--texto-suave);
+  max-width: 560px; margin-bottom: 24px;
+  animation: fadeUp .8s .2s ease both;
+}
+.hero-sub strong { color: var(--texto); }
+
+.hero-chips {
+  list-style: none; display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 32px;
   animation: fadeUp .8s .3s ease both;
 }
-.hero-sub strong { color: #fff; font-weight: 600; }
-
-.hero-btns {
-  display: flex; gap: 14px; flex-wrap: wrap;
-  margin-bottom: 36px;
-  animation: fadeUp .8s .45s ease both;
+.hero-chips a {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 7px 14px; border-radius: 100px;
+  font-size: .85rem; font-weight: 600; text-decoration: none;
+  color: var(--color);
+  background: color-mix(in srgb, var(--color) 10%, #fff);
+  border: 1px solid color-mix(in srgb, var(--color) 25%, #fff);
+  transition: transform .15s, background .2s;
 }
+.hero-chips a:hover { transform: translateY(-2px); background: color-mix(in srgb, var(--color) 18%, #fff); }
 
-.hero-trust {
-  display: flex; gap: 24px; flex-wrap: wrap;
-  animation: fadeUp .8s .6s ease both;
-}
-.trust-item {
-  display: flex; align-items: center; gap: 6px;
-  font-size: .85rem; color: rgba(255,255,255,.55);
-}
+.hero-btns { display: flex; gap: 14px; flex-wrap: wrap; animation: fadeUp .8s .4s ease both; }
 
-/* Imagen flotante */
+/* Collage de fotos */
 .hero-visual {
-  position: absolute; right: 5%; bottom: 0; z-index: 1;
-  width: clamp(260px, 36%, 460px);
-  animation: floatLogo 5s ease-in-out infinite alternate;
+  position: relative; z-index: 1; height: 520px;
+  animation: fadeUp 1s .3s ease both;
 }
-.hero-visual img {
-  width: 100%; height: auto;
-  filter: drop-shadow(0 20px 60px rgba(35,85,180,.5));
-  border-radius: 16px;
-}
+.hero-visual :global(.hv) { position: absolute; border-radius: 24px; box-shadow: var(--sombra-fuerte); border: 6px solid #fff; }
+.hero-visual :global(.hv-main) { top: 0; left: 8%; width: 68%; height: 70%; }
+.hero-visual :global(.hv-a) { bottom: 0; left: 0; width: 46%; height: 42%; }
+.hero-visual :global(.hv-b) { bottom: 6%; right: 0; width: 46%; height: 50%; }
 
-@media (max-width: 900px) { .hero-visual { display: none; } }
+.hv-card {
+  position: absolute; z-index: 3;
+  display: flex; align-items: center; gap: 10px;
+  background: #fff; border-radius: 14px; padding: 10px 16px 10px 10px;
+  font-weight: 700; font-size: .92rem; color: var(--texto);
+  box-shadow: var(--sombra-fuerte);
+  animation: floaty 4s ease-in-out infinite alternate;
+}
+.hv-card span {
+  width: 34px; height: 34px; border-radius: 10px; color: #fff;
+  display: flex; align-items: center; justify-content: center;
+}
+.c1 { top: 8%; right: 0; }
+.c2 { top: 58%; left: 30%; animation-delay: 1.5s; }
+
+@media (max-width: 960px) {
+  section { grid-template-columns: 1fr; min-height: auto; padding: 104px 16px 64px; }
+  .hero-visual { height: 380px; }
+}
 @media (max-width: 480px) {
-  .hero-trust { flex-direction: column; gap: 10px; }
+  .hero-visual { height: 300px; }
+  .hv-card { font-size: .8rem; }
+  .c1 { top: auto; bottom: -14px; right: auto; left: 4%; }
 }
 </style>

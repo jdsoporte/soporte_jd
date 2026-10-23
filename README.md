@@ -5,18 +5,20 @@
 ```
 soporte-jd/
 ├── public/
-│   ├── logo.jpg          ← AGREGA AQUÍ TU LOGO (renómbralo a logo.jpg)
-│   ├── og-image.jpg      ← AGREGA imagen 1200x630px para compartir en redes
+│   ├── logo.jpg
+│   ├── img/              ← FOTOS DE LOS SERVICIOS (ver abajo)
 │   └── robots.txt
 ├── src/
 │   ├── components/
 │   │   ├── Navbar.astro
 │   │   ├── Hero.astro
 │   │   ├── Servicios.astro
-│   │   ├── MenuDigital.astro
+│   │   ├── Software.astro      ← Software, ERP y proyectos (Doret, DISTRIMAS)
 │   │   ├── Proceso.astro
 │   │   ├── Contacto.astro
 │   │   └── Footer.astro
+│   ├── data/
+│   │   └── servicios.ts        ← Textos, colores y fotos de los 5 servicios
 │   ├── layouts/
 │   │   └── Layout.astro
 │   ├── pages/
@@ -52,6 +54,19 @@ Los archivos listos para subir quedan en la carpeta `/dist`
 ```bash
 npm run preview
 ```
+
+---
+
+## 🖼️ Fotos de los servicios
+
+Las fotos van en `public/img/` con estos nombres exactos:
+`camaras.jpg`, `computadores.jpg`, `software.jpg`, `ups.jpg`, `redes.jpg`.
+Si una foto no existe, la tarjeta muestra el color del servicio con su ícono.
+
+## ☁️ Cloudflare Pages
+
+- Framework: **Astro** · Comando de build: `npm run build` · Carpeta de salida: `dist`
+- Dominio: `soportejd.com` (Custom domains en el proyecto de Pages)
 
 ---
 
