@@ -3,43 +3,40 @@ import Layout from '../layouts/Layout.astro';
 import Navbar from '../components/Navbar.astro';
 import Hero from '../components/Hero.astro';
 import Servicios from '../components/Servicios.astro';
-import MenuDigital from '../components/MenuDigital.astro';
+import Software from '../components/Software.astro';
+import Distrimas from '../components/Distrimas.astro';
 import Proceso from '../components/Proceso.astro';
 import Contacto from '../components/Contacto.astro';
 import Footer from '../components/Footer.astro';
+import Icon from '../components/Icon.astro';
 import '../styles/global.css';
+
+const stats = [
+  { num: "24/7", label: "Soporte disponible", color: "var(--c-camaras)" },
+  { num: "5", label: "Servicios especializados", color: "var(--naranja)" },
+  { num: "100%", label: "Atención personalizada", color: "var(--c-ups)" },
+  { num: "A domicilio", label: "Montería y Córdoba", color: "var(--c-redes)" },
+];
 ---
 
-<Layout
-  title="Soporte JD | Redes, CCTV, Soporte Técnico y Menú Digital en Montería, Córdoba"
-  description="Soporte JD en Montería, Córdoba. Instalación de redes y datos, cámaras CCTV, reparación de computadores y menús digitales para negocios. Atención a domicilio. ¡Llámanos ya!"
->
+<Layout>
   <Navbar />
   <main id="main-content">
     <Hero />
 
     <!-- STATS BAR -->
     <div class="stats-bar" aria-label="Datos de Soporte JD">
-      <div class="stat-item">
-        <div class="stat-num">24/7</div>
-        <div class="stat-label">SOPORTE DISPONIBLE</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-num">4</div>
-        <div class="stat-label">SERVICIOS ESPECIALIZADOS</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-num">100%</div>
-        <div class="stat-label">ATENCIÓN PERSONALIZADA</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-num">∞</div>
-        <div class="stat-label">COMPROMISO CON TU NEGOCIO</div>
-      </div>
+      {stats.map(s => (
+        <div class="stat-item" style={`--color:${s.color}`}>
+          <div class="stat-num">{s.num}</div>
+          <div class="stat-label">{s.label}</div>
+        </div>
+      ))}
     </div>
 
     <Servicios />
-    <MenuDigital />
+    <Software />
+    <Distrimas />
     <Proceso />
     <Contacto />
   </main>
@@ -54,31 +51,28 @@ import '../styles/global.css';
     aria-label="Contactar por WhatsApp"
     title="Chatea con Soporte JD"
   >
-    💬
+    <Icon name="chat" />
   </a>
 </Layout>
 
 <style>
 .stats-bar {
-  background: rgba(255,255,255,.03);
-  border-top: 1px solid rgba(255,255,255,.06);
-  border-bottom: 1px solid rgba(255,255,255,.06);
-  display: flex; flex-wrap: wrap; padding: 28px 6%;
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px;
+  margin: -30px 6% 0; position: relative; z-index: 3;
 }
 .stat-item {
-  flex: 1; min-width: 150px; text-align: center; padding: 12px 0;
-  border-right: 1px solid rgba(255,255,255,.06);
+  background: #fff; border-radius: 18px; padding: 22px 16px; text-align: center;
+  border: 1px solid var(--borde); box-shadow: var(--sombra);
+  border-top: 5px solid var(--color);
 }
-.stat-item:last-child { border-right: none; }
 .stat-num {
   font-family: 'Barlow Condensed', sans-serif;
-  font-size: 2.4rem; font-weight: 900; color: #f5a623; line-height: 1;
+  font-size: 2.2rem; font-weight: 900; color: var(--color); line-height: 1;
 }
-.stat-label { font-size: .75rem; color: rgba(255,255,255,.4); margin-top: 4px; letter-spacing: .06em; }
+.stat-label { font-size: .85rem; font-weight: 600; color: var(--texto-suave); margin-top: 6px; }
 
-@media(max-width: 560px) {
-  .stats-bar { flex-direction: column; }
-  .stat-item { border-right: none; border-bottom: 1px solid rgba(255,255,255,.06); }
-  .stat-item:last-child { border-bottom: none; }
+@media(max-width: 860px) {
+  .stats-bar { grid-template-columns: 1fr 1fr; margin: 0 16px; }
+  .stat-num { font-size: 1.7rem; }
 }
 </style>

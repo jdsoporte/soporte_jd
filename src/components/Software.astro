@@ -1,0 +1,293 @@
+---
+import Icon from './Icon.astro';
+
+const modulos = [
+  { icon: "factura", titulo: "Facturación electrónica", desc: "Facturas y notas electrónicas ante la DIAN." },
+  { icon: "carrito", titulo: "Ventas", desc: "Cotizaciones con PDF y envío por correo, pedidos y facturas." },
+  { icon: "caja", titulo: "Inventario y compras", desc: "Productos, bodegas, existencias, órdenes de compra y entradas de mercancía." },
+  { icon: "billetera", titulo: "Caja y cartera", desc: "Turnos de caja, abonos, cuentas por cobrar y por pagar." },
+  { icon: "personas", titulo: "Terceros", desc: "Clientes y proveedores, con lectura automática del RUT." },
+  { icon: "grafica", titulo: "Reportes y equipos", desc: "Indicadores del negocio, hoja de vida y mantenimiento de equipos." },
+];
+
+const proyectos = [
+  {
+    nombre: "Doret",
+    url: "https://doret.soportejd.com",
+    dominio: "doret.soportejd.com",
+    color: "#1D4ED8",
+    desc: "ERP comercial en la nube para varias empresas: facturación electrónica, inventario, ventas, compras, caja, cartera, reportes y rutas de vendedores.",
+    tags: ["ERP", "Multiempresa", "Facturación DIAN"],
+  },
+  {
+    nombre: "DISTRIMAS",
+    url: "https://distrimas.soportejd.com",
+    dominio: "distrimas.soportejd.com",
+    color: "#d62839",
+    desc: "Gestión comercial para negocios con vendedores y pedidos: clientes, inventario, pedidos y vendedores en un solo lugar, desde el computador o el celular.",
+    tags: ["Pedidos", "Vendedores en ruta", "WhatsApp"],
+  },
+];
+
+const menu = ["Dashboard", "Terceros", "Inventario", "Compras", "Ventas", "Caja", "Facturación", "Reportes", "Equipos", "Configuración"];
+
+// Datos de ejemplo para la vista del panel
+const kpis = [
+  { label: "Facturado hoy", valor: "$2.840.000", delta: "+12%", color: "#1D4ED8" },
+  { label: "Facturado este mes", valor: "$48.650.000", delta: "+8%", color: "#10B981" },
+  { label: "Cartera vencida", valor: "$3.120.000", delta: "-5%", color: "#e63946" },
+  { label: "Facturas del mes", valor: "214", delta: "+18", color: "#F59E0B" },
+];
+const ventas = [12, 18, 15, 22, 19, 26, 24, 31, 28, 35, 33, 40];
+const max = Math.max(...ventas);
+const puntos = ventas.map((v, i) => `${(i / (ventas.length - 1)) * 100},${40 - (v / max) * 34}`).join(' ');
+const categorias = [
+  { nombre: "Computadores", pct: 38, color: "#1D4ED8" },
+  { nombre: "Accesorios", pct: 26, color: "#10B981" },
+  { nombre: "Cámaras", pct: 21, color: "#F59E0B" },
+  { nombre: "Servicios", pct: 15, color: "#7b3fe4" },
+];
+let acumulado = 0;
+const dona = categorias.map(c => {
+  const tramo = `${c.color} ${acumulado}% ${acumulado + c.pct}%`;
+  acumulado += c.pct;
+  return tramo;
+}).join(', ');
+---
+
+<section id="software" aria-labelledby="software-titulo">
+  <div class="sw-layout">
+    <div class="sw-texto">
+      <span class="section-label">Desarrollo de software</span>
+      <h2 class="section-title" id="software-titulo">
+        Software y <em>ERP comercial</em><br />para tu negocio
+      </h2>
+      <p class="section-desc">
+        Desarrollamos sistemas a la medida y un ERP comercial en la nube para controlar tu negocio
+        desde cualquier lugar: el computador, la tablet o el celular.
+      </p>
+
+      <ul class="mod-list" role="list">
+        {modulos.map(m => (
+          <li>
+            <span class="mod-icon"><Icon name={m.icon} size={20} /></span>
+            <div>
+              <strong>{m.titulo}</strong>
+              <span>{m.desc}</span>
+            </div>
+          </li>
+        ))}
+      </ul>
+    </div>
+
+    <!-- VISTA DEL PANEL (datos de ejemplo) -->
+    <div class="mockup" role="img" aria-label="Vista del panel del ERP Doret con datos de ejemplo">
+      <div class="mk-bar">
+        <i></i><i></i><i></i>
+        <span>doret.soportejd.com/dashboard</span>
+      </div>
+      <div class="mk-app">
+        <aside class="mk-side">
+          <div class="mk-logo">D<b>oret</b><em></em></div>
+          {menu.map((m, i) => <div class:list={['mk-item', { activo: i === 0 }]}>{m}</div>)}
+        </aside>
+        <div class="mk-main">
+          <div class="mk-hola">Panel principal</div>
+          <div class="mk-sub">Resumen general de tu negocio</div>
+          <div class="mk-kpis">
+            {kpis.map(k => (
+              <div class="mk-kpi" style={`--k:${k.color}`}>
+                <span>{k.label}</span>
+                <strong>{k.valor}</strong>
+                <small>{k.delta}</small>
+              </div>
+            ))}
+          </div>
+          <div class="mk-graficas">
+            <div class="mk-card">
+              <div class="mk-card-t">Histórico de ventas</div>
+              <svg viewBox="0 0 100 42" preserveAspectRatio="none" class="mk-linea">
+                <defs>
+                  <linearGradient id="relleno" x1="0" x2="0" y1="0" y2="1">
+                    <stop offset="0" stop-color="#1D4ED8" stop-opacity=".25" />
+                    <stop offset="1" stop-color="#1D4ED8" stop-opacity="0" />
+                  </linearGradient>
+                </defs>
+                <polygon points={`0,42 ${puntos} 100,42`} fill="url(#relleno)" />
+                <polyline points={puntos} fill="none" stroke="#1D4ED8" stroke-width="1.2" vector-effect="non-scaling-stroke" />
+              </svg>
+            </div>
+            <div class="mk-card">
+              <div class="mk-card-t">Ventas por categoría</div>
+              <div class="mk-dona-wrap">
+                <div class="mk-dona" style={`background: conic-gradient(${dona})`}><span>100%</span></div>
+                <ul>
+                  {categorias.map(c => <li><i style={`background:${c.color}`}></i>{c.nombre} <b>{c.pct}%</b></li>)}
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROYECTOS -->
+  <div class="proyectos">
+    <h3 class="proy-titulo">Nuestros proyectos</h3>
+    <div class="proy-grid">
+      {proyectos.map(p => (
+        <a href={p.url} class="proy" style={`--p:${p.color}`} target="_blank" rel="noopener noreferrer">
+          <div class="proy-head">
+            <span class="proy-ini">{p.nombre[0]}</span>
+            <div>
+              <strong>{p.nombre}</strong>
+              <small>{p.dominio}</small>
+            </div>
+          </div>
+          <p>{p.desc}</p>
+          <div class="proy-tags">{p.tags.map(t => <span>{t}</span>)}</div>
+          <span class="proy-ver">Visitar <Icon name="flecha" size={16} /></span>
+        </a>
+      ))}
+      <a href="#contacto" class="proy proy-nuevo">
+        <span class="proy-mas"><Icon name="codigo" size={26} /></span>
+        <strong>¿Tienes una idea?</strong>
+        <p>Desarrollamos el software que tu negocio necesita, a la medida.</p>
+        <span class="proy-ver">Cuéntanos tu proyecto <Icon name="flecha" size={16} /></span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<style>
+section { background: var(--fondo-suave); }
+#software .section-label { color: var(--c-software); }
+
+.sw-layout {
+  display: grid; grid-template-columns: 1fr 1.15fr; gap: 56px; align-items: center;
+}
+
+.mod-list {
+  list-style: none; margin-top: 30px;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 18px 22px;
+}
+.mod-list li { display: flex; gap: 12px; align-items: flex-start; }
+.mod-icon {
+  width: 40px; height: 40px; min-width: 40px; border-radius: 12px;
+  background: color-mix(in srgb, var(--c-software) 12%, #fff); color: var(--c-software);
+  display: flex; align-items: center; justify-content: center;
+}
+.mod-list strong { display: block; font-size: .98rem; margin-bottom: 2px; }
+.mod-list span { font-size: .87rem; color: var(--texto-suave); line-height: 1.5; }
+
+/* ── Mockup del panel ── */
+.mockup {
+  background: #fff; border-radius: 18px; overflow: hidden;
+  border: 1px solid var(--borde);
+  box-shadow: 0 30px 60px rgba(20,33,61,.16);
+  font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
+  color: #0F172A;
+}
+.mk-bar {
+  display: flex; align-items: center; gap: 6px;
+  padding: 10px 14px; background: #f1f5f9; border-bottom: 1px solid #e2e8f0;
+}
+.mk-bar i { width: 10px; height: 10px; border-radius: 50%; background: #ff5f57; }
+.mk-bar i:nth-child(2) { background: #febc2e; }
+.mk-bar i:nth-child(3) { background: #28c840; }
+.mk-bar span {
+  margin-left: 10px; font-size: .72rem; color: #64748B;
+  background: #fff; border-radius: 6px; padding: 3px 10px;
+}
+.mk-app { display: grid; grid-template-columns: 130px 1fr; min-height: 340px; }
+.mk-side { border-right: 1px solid #e2e8f0; padding: 14px 10px; }
+.mk-logo { font-size: 1.35rem; font-weight: 800; color: #1D4ED8; margin: 0 0 12px 6px; display: flex; align-items: flex-end; }
+.mk-logo b { color: #0F172A; font-weight: 600; }
+.mk-logo em { width: 5px; height: 5px; border-radius: 50%; background: #10B981; margin: 0 0 6px 2px; }
+.mk-item { font-size: .7rem; font-weight: 600; padding: 6px 8px; border-radius: 6px; color: #334155; margin-bottom: 2px; }
+.mk-item.activo { background: #1D4ED8; color: #fff; }
+
+.mk-main { padding: 16px; background: #f8fafc; }
+.mk-hola { font-weight: 700; font-size: .95rem; }
+.mk-sub { font-size: .7rem; color: #64748B; margin-bottom: 12px; }
+.mk-kpis { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-bottom: 10px; }
+.mk-kpi {
+  background: #fff; border-radius: 10px; padding: 9px; border: 1px solid #e2e8f0;
+  border-top: 3px solid var(--k);
+}
+.mk-kpi span { display: block; font-size: .58rem; color: #64748B; }
+.mk-kpi strong { display: block; font-size: .78rem; margin: 3px 0 1px; }
+.mk-kpi small { font-size: .58rem; font-weight: 700; color: var(--k); }
+.mk-graficas { display: grid; grid-template-columns: 1.4fr 1fr; gap: 8px; }
+.mk-card { background: #fff; border-radius: 10px; padding: 10px; border: 1px solid #e2e8f0; }
+.mk-card-t { font-size: .68rem; font-weight: 700; margin-bottom: 8px; }
+.mk-linea { width: 100%; height: 110px; display: block; }
+.mk-dona-wrap { display: flex; align-items: center; gap: 10px; }
+.mk-dona {
+  width: 76px; height: 76px; min-width: 76px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center; position: relative;
+}
+.mk-dona::before { content: ''; position: absolute; inset: 14px; background: #fff; border-radius: 50%; }
+.mk-dona span { position: relative; font-size: .62rem; font-weight: 700; }
+.mk-dona-wrap ul { list-style: none; font-size: .6rem; color: #334155; display: grid; gap: 4px; }
+.mk-dona-wrap li { display: flex; align-items: center; gap: 4px; }
+.mk-dona-wrap li i { width: 7px; height: 7px; border-radius: 2px; }
+
+/* ── Proyectos ── */
+.proyectos { margin-top: 72px; }
+.proy-titulo {
+  font-family: 'Barlow Condensed', sans-serif; font-size: 1.8rem; font-weight: 800;
+  text-align: center; margin-bottom: 28px;
+}
+.proy-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+.proy {
+  display: flex; flex-direction: column; gap: 12px;
+  background: #fff; border-radius: 18px; padding: 26px;
+  border: 1px solid var(--borde); border-top: 5px solid var(--p);
+  box-shadow: var(--sombra);
+  text-decoration: none; color: var(--texto);
+  transition: transform .25s, box-shadow .25s;
+}
+.proy:hover { transform: translateY(-6px); box-shadow: var(--sombra-fuerte); }
+.proy-head { display: flex; align-items: center; gap: 12px; }
+.proy-ini {
+  width: 46px; height: 46px; border-radius: 12px;
+  background: var(--p); color: #fff;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Barlow Condensed', sans-serif; font-size: 1.5rem; font-weight: 800;
+}
+.proy-head strong { display: block; font-size: 1.2rem; }
+.proy-head small { color: var(--p); font-weight: 600; font-size: .82rem; }
+.proy p { font-size: .92rem; color: var(--texto-suave); line-height: 1.6; flex: 1; }
+.proy-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+.proy-tags span {
+  font-size: .72rem; font-weight: 700; padding: 4px 10px; border-radius: 100px;
+  color: var(--p); background: color-mix(in srgb, var(--p) 10%, #fff);
+}
+.proy-ver { display: inline-flex; align-items: center; gap: 6px; font-weight: 700; font-size: .9rem; color: var(--p); }
+.proy-nuevo {
+  --p: var(--c-software);
+  border: 2px dashed color-mix(in srgb, var(--c-software) 35%, #fff);
+  align-items: flex-start;
+}
+.proy-mas {
+  width: 46px; height: 46px; border-radius: 12px;
+  background: color-mix(in srgb, var(--c-software) 12%, #fff); color: var(--c-software);
+  display: flex; align-items: center; justify-content: center;
+}
+.proy-nuevo strong { font-size: 1.2rem; }
+
+@media (max-width: 1000px) {
+  .sw-layout { grid-template-columns: 1fr; gap: 40px; }
+  .proy-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 640px) {
+  .mod-list { grid-template-columns: 1fr; }
+  .proy-grid { grid-template-columns: 1fr; }
+  .mk-app { grid-template-columns: 1fr; }
+  .mk-side { display: none; }
+  .mk-kpis { grid-template-columns: 1fr 1fr; }
+  .mk-graficas { grid-template-columns: 1fr; }
+}
+</style>

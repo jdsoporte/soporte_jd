@@ -1,228 +1,179 @@
 ---
+import Icon from './Icon.astro';
+import { servicios } from '../data/servicios';
 ---
 <section id="contacto" aria-labelledby="contacto-titulo">
   <div class="contacto-layout">
 
     <!-- INFO -->
     <div class="contacto-info">
-      <span class="section-label">Hablemos</span>
+      <span class="section-label">Contacto</span>
       <h2 class="section-title" id="contacto-titulo">
-        Contáctanos<br /><em>Hoy Mismo</em>
+        Contáctanos <em>hoy mismo</em>
       </h2>
       <p class="section-desc">
         Estamos en <strong>Montería, Córdoba</strong>. Sin oficina presencial, pero siempre disponibles
         para atenderte donde estés. Respuesta rápida garantizada.
       </p>
 
-      <!-- TARJETAS DE CONTACTO -->
-      <div class="contact-cards" itemscope itemtype="https://schema.org/LocalBusiness">
+      <div class="contact-cards">
         <a
           href="https://wa.me/573016537553?text=Hola%2C%20vi%20su%20p%C3%A1gina%20y%20necesito%20informaci%C3%B3n"
-          class="ccard"
+          class="ccard" style="--color:#25d366"
           target="_blank" rel="noopener noreferrer"
-          aria-label="Contactar por WhatsApp"
-          itemprop="telephone" content="+573016537553"
         >
-          <div class="cicon wa">💬</div>
+          <div class="cicon"><Icon name="chat" /></div>
           <div>
             <div class="clabel">WHATSAPP</div>
             <div class="cval">+57 301 653 7553</div>
           </div>
-          <span class="carrow">→</span>
+          <Icon name="flecha" size={18} class="carrow" />
         </a>
 
-        <a href="tel:+573016537553" class="ccard" aria-label="Llamar por teléfono">
-          <div class="cicon tel">📞</div>
+        <a href="tel:+573016537553" class="ccard" style="--color:var(--c-redes)">
+          <div class="cicon"><Icon name="telefono" /></div>
           <div>
             <div class="clabel">TELÉFONO</div>
             <div class="cval">+57 301 653 7553</div>
           </div>
-          <span class="carrow">→</span>
+          <Icon name="flecha" size={18} class="carrow" />
         </a>
 
-        <a href="mailto:jdsoporte98@gmail.com" class="ccard" aria-label="Enviar correo electrónico">
-          <div class="cicon mail">✉️</div>
+        <a href="mailto:jdsoporte98@gmail.com" class="ccard" style="--color:var(--naranja)">
+          <div class="cicon"><Icon name="correo" /></div>
           <div>
             <div class="clabel">CORREO</div>
             <div class="cval">jdsoporte98@gmail.com</div>
           </div>
-          <span class="carrow">→</span>
+          <Icon name="flecha" size={18} class="carrow" />
         </a>
-      </div>
 
-      <!-- REDES SOCIALES – PRÓXIMAMENTE -->
-      <!-- ════════════════════════════════════════════════════════
-           INSTRUCCIONES PARA ACTIVAR REDES SOCIALES:
-           1. Cambia href="#" de cada enlace por tu URL real
-              Ejemplo Facebook:  href="https://facebook.com/TuPagina"
-              Ejemplo Instagram: href="https://instagram.com/tu_usuario"
-              Ejemplo TikTok:    href="https://tiktok.com/@tu_usuario"
-           2. En cada <a> elimina estas líneas:
-                  style="opacity:.4;pointer-events:none;cursor:not-allowed"
-           3. Borra el párrafo "Próximamente activas"
-           ════════════════════════════════════════════════════════ -->
-      <div class="redes-box">
-        <p class="redes-pronto">🔜 <strong>Redes Sociales</strong> — Próximamente activas</p>
-        <div class="redes-btns">
-          <a href="#" class="red-btn" style="opacity:.4;pointer-events:none;cursor:not-allowed" aria-label="Facebook Soporte JD">
-            📘 Facebook
-          </a>
-          <a href="#" class="red-btn" style="opacity:.4;pointer-events:none;cursor:not-allowed" aria-label="Instagram Soporte JD">
-            📸 Instagram
-          </a>
-          <a href="#" class="red-btn" style="opacity:.4;pointer-events:none;cursor:not-allowed" aria-label="TikTok Soporte JD">
-            🎵 TikTok
-          </a>
+        <div class="ccard" style="--color:var(--c-camaras)">
+          <div class="cicon"><Icon name="ubicacion" /></div>
+          <div>
+            <div class="clabel">UBICACIÓN</div>
+            <div class="cval">Montería, Córdoba · Colombia</div>
+          </div>
         </div>
       </div>
     </div>
 
     <!-- FORMULARIO -->
-    <div class="form-box" role="form" aria-label="Formulario de contacto Soporte JD">
-      <h3 class="form-title">📩 Envíanos un Mensaje</h3>
+    <form class="form-box" id="formContacto" aria-label="Formulario de contacto Soporte JD">
+      <h3 class="form-title">Envíanos un mensaje</h3>
       <p class="form-subtitle">Completa el formulario y te contactamos por WhatsApp de inmediato.</p>
 
-      <div class="form-group">
-        <label for="nombre">NOMBRE COMPLETO</label>
-        <input type="text" id="nombre" placeholder="Tu nombre completo" autocomplete="name" />
+      <div class="form-row">
+        <div class="form-group">
+          <label for="nombre">Nombre completo</label>
+          <input type="text" id="nombre" placeholder="Tu nombre completo" autocomplete="name" />
+        </div>
+        <div class="form-group">
+          <label for="telefono">Teléfono / WhatsApp</label>
+          <input type="tel" id="telefono" placeholder="Ej: 300 123 4567" autocomplete="tel" />
+        </div>
       </div>
       <div class="form-group">
-        <label for="telefono">TELÉFONO / WHATSAPP</label>
-        <input type="tel" id="telefono" placeholder="Ej: 300 123 4567" autocomplete="tel" />
-      </div>
-      <div class="form-group">
-        <label for="correo">CORREO ELECTRÓNICO</label>
-        <input type="email" id="correo" placeholder="tu@correo.com" autocomplete="email" />
-      </div>
-      <div class="form-group">
-        <label for="servicio">SERVICIO DE INTERÉS</label>
+        <label for="servicio">Servicio de interés</label>
         <select id="servicio">
           <option value="">Selecciona un servicio…</option>
-          <option value="Redes y Datos">Redes y Datos</option>
-          <option value="Cámaras CCTV">Cámaras CCTV</option>
-          <option value="Soporte y Reparación de Equipos">Soporte y Reparación de Equipos</option>
-          <option value="Menú Digital para Negocios">Menú Digital para Negocios</option>
+          {servicios.map(s => <option value={s.titulo}>{s.titulo}</option>)}
           <option value="Otro">Otro</option>
         </select>
       </div>
       <div class="form-group">
-        <label for="mensaje">MENSAJE</label>
+        <label for="mensaje">Mensaje</label>
         <textarea id="mensaje" placeholder="Cuéntanos qué necesitas…" rows="4"></textarea>
       </div>
 
-      <button class="btn-enviar" id="btnEnviar" type="button" aria-label="Enviar mensaje por WhatsApp">
-        📲 Enviar por WhatsApp
+      <button class="btn-enviar" type="submit">
+        <Icon name="chat" size={20} /> Enviar por WhatsApp
       </button>
-      <p class="form-note">Tu mensaje llegará directamente a nuestro WhatsApp. Sin spam.</p>
-    </div>
+      <p class="form-note">Tu mensaje llegará directamente a nuestro WhatsApp.</p>
+    </form>
 
   </div>
 </section>
 
 <style>
-section {
-  background: linear-gradient(135deg, #0d1b3e 0%, #0d1117 100%);
-  border-top: 1px solid rgba(35,85,180,.2);
-}
-h2 em { color: #f5a623; font-style: normal; }
+section { background: #fff; }
 
 .contacto-layout {
   display: grid; grid-template-columns: 1fr 1fr;
-  gap: 64px; align-items: start;
+  gap: 60px; align-items: start;
 }
-@media(max-width: 800px) { .contacto-layout { grid-template-columns: 1fr; gap: 48px; } }
+@media(max-width: 860px) { .contacto-layout { grid-template-columns: 1fr; gap: 44px; } }
 
-/* Tarjetas contacto */
-.contact-cards { display: flex; flex-direction: column; gap: 14px; margin-top: 36px; }
+.contact-cards { display: flex; flex-direction: column; gap: 14px; margin-top: 32px; }
 .ccard {
   display: flex; align-items: center; gap: 16px;
-  background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.08);
-  border-radius: 12px; padding: 18px 20px;
-  text-decoration: none; color: #fff;
+  background: #fff; border: 1px solid var(--borde);
+  border-radius: 16px; padding: 16px 18px;
+  text-decoration: none; color: var(--texto);
+  box-shadow: 0 4px 14px rgba(20,33,61,.04);
   transition: border-color .3s, transform .2s, box-shadow .3s;
 }
-.ccard:hover {
-  border-color: #f5a623; transform: translateX(6px);
-  box-shadow: 0 6px 24px rgba(245,166,35,.15);
+a.ccard:hover {
+  border-color: var(--color); transform: translateX(6px);
+  box-shadow: 0 10px 26px color-mix(in srgb, var(--color) 20%, transparent);
 }
 .cicon {
-  width: 46px; height: 46px; min-width: 46px; border-radius: 10px;
-  display: flex; align-items: center; justify-content: center; font-size: 1.4rem;
+  width: 48px; height: 48px; min-width: 48px; border-radius: 14px;
+  background: color-mix(in srgb, var(--color) 12%, #fff); color: var(--color);
+  display: flex; align-items: center; justify-content: center;
 }
-.wa   { background: rgba(37,211,102,.15); }
-.tel  { background: rgba(58,123,213,.15); }
-.mail { background: rgba(245,166,35,.15); }
-.clabel { font-size: .72rem; color: rgba(255,255,255,.4); margin-bottom: 2px; letter-spacing: .05em; }
-.cval   { font-weight: 600; font-size: .97rem; }
-.carrow { margin-left: auto; color: rgba(255,255,255,.2); transition: color .2s; }
-.ccard:hover .carrow { color: #f5a623; }
-
-/* Redes */
-.redes-box {
-  background: rgba(255,255,255,.03); border: 1.5px dashed rgba(255,255,255,.12);
-  border-radius: 12px; padding: 20px; margin-top: 16px;
-}
-.redes-pronto {
-  font-size: .85rem; color: rgba(255,255,255,.4); text-align: center;
-  margin-bottom: 14px;
-}
-.redes-pronto strong { color: rgba(255,255,255,.6); }
-.redes-btns { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
-.red-btn {
-  background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.1);
-  color: rgba(255,255,255,.5); border-radius: 8px; padding: 8px 16px;
-  font-size: .82rem; font-weight: 600; text-decoration: none;
-  transition: border-color .2s, color .2s;
-}
-.red-btn:hover { border-color: #f5a623; color: #f5a623; }
+.clabel { font-size: .72rem; font-weight: 700; color: var(--texto-suave); letter-spacing: .06em; margin-bottom: 2px; }
+.cval { font-weight: 700; font-size: 1rem; word-break: break-word; }
+.ccard :global(.carrow) { margin-left: auto; color: #c3cad6; min-width: 18px; transition: color .2s; }
+.ccard:hover :global(.carrow) { color: var(--color); }
 
 /* Formulario */
 .form-box {
-  background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.08);
-  border-radius: 18px; padding: 36px;
+  background: #fff; border-radius: 24px; padding: 34px;
+  border: 1px solid var(--borde);
+  box-shadow: var(--sombra-fuerte);
+  position: relative; overflow: hidden;
 }
-.form-title {
-  font-family: 'Barlow Condensed', sans-serif;
-  font-size: 1.5rem; font-weight: 700; margin-bottom: 6px;
+.form-box::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 6px;
+  background: var(--azul);
 }
-.form-subtitle { font-size: .88rem; color: rgba(255,255,255,.45); margin-bottom: 28px; }
-.form-group { margin-bottom: 18px; }
-.form-group label {
-  display: block; font-size: .75rem; font-weight: 700; letter-spacing: .06em;
-  color: rgba(255,255,255,.45); margin-bottom: 8px;
-}
+.form-title { font-family: 'Barlow Condensed', sans-serif; font-size: 1.7rem; font-weight: 800; margin-bottom: 4px; }
+.form-subtitle { font-size: .92rem; color: var(--texto-suave); margin-bottom: 24px; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+@media(max-width: 520px) { .form-row { grid-template-columns: 1fr; gap: 0; } .form-box { padding: 26px 20px; } }
+.form-group { margin-bottom: 16px; }
+.form-group label { display: block; font-size: .85rem; font-weight: 700; margin-bottom: 6px; }
 .form-group input,
 .form-group textarea,
 .form-group select {
   width: 100%;
-  background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.12);
-  border-radius: 8px; color: #fff;
-  font-family: 'Barlow', sans-serif; font-size: .95rem;
-  padding: 12px 16px; outline: none; transition: border-color .2s;
+  background: var(--fondo-suave); border: 1.5px solid var(--borde);
+  border-radius: 12px; color: var(--texto);
+  font-family: 'Barlow', sans-serif; font-size: 1rem;
+  padding: 12px 14px; outline: none; transition: border-color .2s, background .2s;
 }
 .form-group input:focus,
 .form-group textarea:focus,
-.form-group select:focus { border-color: #3a7bd5; }
+.form-group select:focus { border-color: var(--azul); background: #fff; }
 .form-group textarea { resize: vertical; min-height: 100px; }
-.form-group select option { background: #1a2a6c; }
 
 .btn-enviar {
-  width: 100%; background: #f5a623; color: #0d1117;
+  width: 100%; display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  background: #25d366; color: #fff;
   font-family: 'Barlow Condensed', sans-serif; font-weight: 700;
-  font-size: 1.1rem; letter-spacing: .06em;
-  padding: 15px; border: none; border-radius: 8px; cursor: pointer;
-  transition: background .2s, transform .15s;
-  box-shadow: 0 4px 20px rgba(245,166,35,.3);
+  font-size: 1.15rem; letter-spacing: .04em;
+  padding: 15px; border: none; border-radius: 12px; cursor: pointer;
+  box-shadow: 0 8px 22px rgba(37,211,102,.35);
+  transition: filter .2s, transform .15s;
 }
-.btn-enviar:hover { background: #e08800; transform: translateY(-2px); }
-.form-note {
-  font-size: .78rem; color: rgba(255,255,255,.3);
-  text-align: center; margin-top: 12px;
-}
+.btn-enviar:hover { filter: brightness(.95); transform: translateY(-2px); }
+.form-note { font-size: .8rem; color: var(--texto-suave); text-align: center; margin-top: 12px; }
 </style>
 
 <script>
-  document.getElementById('btnEnviar')?.addEventListener('click', () => {
+  document.getElementById('formContacto')?.addEventListener('submit', (e) => {
+    e.preventDefault();
     const nombre   = (document.getElementById('nombre') as HTMLInputElement)?.value.trim() || 'Sin nombre';
     const telefono = (document.getElementById('telefono') as HTMLInputElement)?.value.trim();
     const servicio = (document.getElementById('servicio') as HTMLSelectElement)?.value || 'No especificado';

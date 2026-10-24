@@ -1,133 +1,120 @@
 ---
-const servicios = [
-  {
-    icon: "🌐",
-    titulo: "Redes y Datos",
-    descripcion: "Instalación, configuración y mantenimiento de redes cableadas e inalámbricas (WiFi). Optimización de velocidad, cobertura y seguridad para tu hogar o empresa en Montería.",
-    tags: ["REDES", "WIFI", "CABLEADO", "MONTERÍA"],
-    schema: "NetworkInstallation"
-  },
-  {
-    icon: "📷",
-    titulo: "Cámaras CCTV",
-    descripcion: "Diseño e instalación de sistemas de videovigilancia. Monitoreo remoto desde tu celular, cámaras HD para interiores y exteriores. Protege tu negocio o hogar en Córdoba.",
-    tags: ["VIGILANCIA", "HD", "REMOTO", "CCTV"],
-    schema: "SecuritySystem"
-  },
-  {
-    icon: "🖥️",
-    titulo: "Soporte y Reparación de Equipos",
-    descripcion: "Diagnóstico y reparación de computadores, laptops y periféricos en Montería. Instalación de software, formateo, limpieza y mantenimiento preventivo. Visitamos tu domicilio.",
-    tags: ["PC", "LAPTOP", "DOMICILIO", "FORMATEO"],
-    schema: "ComputerRepair"
-  },
-  {
-    icon: "📱",
-    titulo: "Menú Digital para Negocios",
-    descripcion: "Automatiza tu restaurante, tienda o negocio en Montería con menús digitales: toma de pedidos, registro de inventario, historial de ventas y mucho más. Ideal para pymes.",
-    tags: ["PEDIDOS", "INVENTARIO", "DIGITAL", "PYMES"],
-    schema: "SoftwareApplication"
-  }
-];
+import Icon from './Icon.astro';
+import Foto from './Foto.astro';
+import { servicios } from '../data/servicios';
 ---
 
 <section id="servicios" aria-labelledby="servicios-titulo">
-  <span class="section-label">Lo que hacemos</span>
-  <h2 class="section-title" id="servicios-titulo">
-    Nuestros Servicios en<br /><em>Montería, Córdoba</em>
-  </h2>
-  <p class="section-desc">
-    Soluciones tecnológicas completas para hogares y negocios. Atención directa, sin intermediarios, donde tú estés.
-  </p>
+  <div class="section-head">
+    <span class="section-label">Servicios</span>
+    <h2 class="section-title" id="servicios-titulo">
+      Nuestros servicios en <em>Montería, Córdoba</em>
+    </h2>
+    <p class="section-desc">
+      Soluciones tecnológicas completas para hogares y negocios. Atención directa, sin intermediarios, donde tú estés.
+    </p>
+  </div>
 
   <div class="servicios-grid">
     {servicios.map((s, i) => (
-      <article class="servicio-card" itemscope itemtype={`https://schema.org/${s.schema}`}>
-        <div class="servicio-num" aria-hidden="true">0{i + 1}</div>
-        <div class="servicio-icon" aria-hidden="true">{s.icon}</div>
-        <h3 itemprop="name">{s.titulo}</h3>
-        <p itemprop="description">{s.descripcion}</p>
-        <div class="servicio-tags" aria-label="Etiquetas del servicio">
-          {s.tags.map(tag => <span class="tag">{tag}</span>)}
+      <article class="servicio-card" id={s.id} style={`--color:${s.color}`}>
+        <div class="card-foto">
+          <Foto src={s.foto} alt={s.alt} color={s.color} icon={s.icon} class="card-img" />
+          <span class="card-num" aria-hidden="true">0{i + 1}</span>
         </div>
-        <a
-          href="#contacto"
-          class="servicio-cta"
-          aria-label={`Cotizar ${s.titulo}`}
-        >
-          Cotizar este servicio →
-        </a>
+        <div class="card-body">
+          <div class="card-icon"><Icon name={s.icon} size={26} /></div>
+          <h3>{s.titulo}</h3>
+          <p>{s.descripcion}</p>
+          <ul class="card-puntos">
+            {s.puntos.map(p => <li><Icon name="check" size={16} /> {p}</li>)}
+          </ul>
+          <a
+            href={`https://wa.me/573016537553?text=${encodeURIComponent(`Hola, quiero cotizar: ${s.titulo}`)}`}
+            class="card-cta"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={`Cotizar ${s.titulo}`}
+          >
+            Cotizar este servicio <Icon name="flecha" size={18} />
+          </a>
+        </div>
       </article>
     ))}
   </div>
 </section>
 
 <style>
-section {
-  background: #0d1117;
-}
-h2 em { color: #f5a623; font-style: normal; }
+section { background: #fff; }
 
 .servicios-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 24px; margin-top: 52px;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 26px; margin-top: 52px;
 }
+/* 3 arriba y 2 abajo centradas */
+.servicio-card { grid-column: span 2; }
+.servicio-card:nth-child(4) { grid-column: 2 / span 2; }
+.servicio-card:nth-child(5) { grid-column: 4 / span 2; }
 
 .servicio-card {
-  background: rgba(255,255,255,.03);
-  border: 1px solid rgba(255,255,255,.08);
-  border-radius: 18px; padding: 36px 28px;
-  position: relative; overflow: hidden;
-  display: flex; flex-direction: column; gap: 0;
-  transition: transform .3s, border-color .3s, box-shadow .3s;
-}
-.servicio-card::before {
-  content: ''; position: absolute; inset: 0;
-  background: linear-gradient(135deg, rgba(35,85,180,.08) 0%, transparent 60%);
-  opacity: 0; transition: opacity .3s;
+  background: #fff; border-radius: 22px; overflow: hidden;
+  border: 1px solid var(--borde);
+  box-shadow: var(--sombra);
+  display: flex; flex-direction: column;
+  transition: transform .3s, box-shadow .3s, border-color .3s;
 }
 .servicio-card:hover {
-  transform: translateY(-6px);
-  border-color: rgba(58,123,213,.4);
-  box-shadow: 0 12px 40px rgba(35,85,180,.18);
+  transform: translateY(-8px);
+  border-color: color-mix(in srgb, var(--color) 40%, #fff);
+  box-shadow: 0 22px 46px color-mix(in srgb, var(--color) 22%, transparent);
 }
-.servicio-card:hover::before { opacity: 1; }
 
-.servicio-num {
-  position: absolute; top: 20px; right: 24px;
-  font-family: 'Barlow Condensed', sans-serif;
-  font-size: 3.5rem; font-weight: 900;
-  color: rgba(255,255,255,.04); line-height: 1;
-  pointer-events: none; user-select: none;
+.card-foto { position: relative; }
+.card-foto :global(.card-img) { height: 200px; }
+.card-foto::after {
+  content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 5px;
+  background: var(--color);
 }
-.servicio-icon {
-  width: 58px; height: 58px; border-radius: 14px;
-  background: linear-gradient(135deg, #2355b4, #1a2a6c);
-  display: flex; align-items: center; justify-content: center;
-  font-size: 1.7rem; margin-bottom: 20px;
-  box-shadow: 0 4px 16px rgba(35,85,180,.35);
-}
-.servicio-card h3 {
-  font-family: 'Barlow Condensed', sans-serif;
-  font-size: 1.35rem; font-weight: 700; margin-bottom: 10px; letter-spacing: .02em;
-}
-.servicio-card p {
-  font-size: .92rem; color: rgba(255,255,255,.55); line-height: 1.65; flex: 1;
-}
-.servicio-tags {
-  display: flex; flex-wrap: wrap; gap: 6px; margin-top: 18px;
-}
-.tag {
-  background: rgba(245,166,35,.1); color: #f5a623;
-  font-size: .7rem; font-weight: 700; letter-spacing: .1em;
+.card-num {
+  position: absolute; top: 14px; right: 16px;
+  font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 1rem;
+  color: #fff; background: var(--color);
   padding: 4px 10px; border-radius: 100px;
 }
-.servicio-cta {
-  display: inline-block; margin-top: 20px;
-  color: rgba(255,255,255,.4); font-size: .85rem; font-weight: 600;
-  text-decoration: none; letter-spacing: .03em;
-  transition: color .2s;
+
+.card-body { padding: 0 26px 26px; display: flex; flex-direction: column; flex: 1; }
+.card-icon {
+  width: 56px; height: 56px; border-radius: 16px;
+  background: var(--color); color: #fff;
+  display: flex; align-items: center; justify-content: center;
+  margin-top: -28px; margin-bottom: 16px; position: relative; z-index: 1;
+  border: 4px solid #fff;
+  box-shadow: 0 8px 20px color-mix(in srgb, var(--color) 40%, transparent);
 }
-.servicio-cta:hover { color: #f5a623; }
+.card-body h3 {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 1.45rem; font-weight: 800; line-height: 1.1; margin-bottom: 10px;
+}
+.card-body p { font-size: .93rem; color: var(--texto-suave); line-height: 1.65; }
+
+.card-puntos { list-style: none; margin: 16px 0 0; display: grid; gap: 7px; flex: 1; }
+.card-puntos li { display: flex; align-items: center; gap: 8px; font-size: .9rem; font-weight: 600; }
+.card-puntos li :global(svg) { color: var(--color); min-width: 16px; }
+
+.card-cta {
+  display: inline-flex; align-items: center; gap: 6px; margin-top: 20px;
+  color: var(--color); font-weight: 700; font-size: .95rem; text-decoration: none;
+}
+.card-cta:hover { gap: 10px; }
+
+@media (max-width: 1000px) {
+  .servicios-grid { grid-template-columns: 1fr 1fr; }
+  .servicio-card, .servicio-card:nth-child(4) { grid-column: auto; }
+  .servicio-card:nth-child(5) { grid-column: 1 / -1; max-width: 560px; justify-self: center; width: 100%; }
+}
+@media (max-width: 640px) {
+  .servicios-grid { grid-template-columns: 1fr; }
+  .servicio-card:nth-child(5) { max-width: none; }
+}
 </style>
